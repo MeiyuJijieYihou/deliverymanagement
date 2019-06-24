@@ -119,4 +119,31 @@
       delivery_time = #{deliveryTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <resultMap id="DeliveryDetailMap" type="DeliveryPojo">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <!--<result column="driver_id" jdbcType="INTEGER" property="driverId" />-->
+
+    <!--<result column="truck_id" jdbcType="INTEGER" property="truckId" />-->
+
+    <result column="delivery_time" jdbcType="TIMESTAMP" property="deliveryTime" />
+
+    <association javaType="com.zhaofeng.deliverymanagement.entity.User" property="driver"
+                 column="driver_id" select="com.zhaofeng.deliverymanagement.repository.UserMapper.selectByPrimaryKey">
+    </association>
+    <association javaType="com.zhaofeng.deliverymanagement.entity.Truck" property="truck"
+                 column="truck_id" select="com.zhaofeng.deliverymanagement.repository.TruckMapper.selectByPrimaryKey">
+    </association>
+    <collection column="id" ofType="com.zhaofeng.deliverymanagement.entity.Orders" property="orderList" select="com.zhaofeng.deliverymanagement.repository.OrdersMapper.selectAllOrdersByDeliveryId" />
+    <collection column="id" ofType="com.zhaofeng.deliverymanagement.entity.User" property="loaderList" select="com.zhaofeng.deliverymanagement.repository.UserMapper.selectByDeliveryId" />
+
+  </resultMap>
+
+  <!-- 根据用户id获取所有发货记录 -->
+  <select id="selectAllDeliveryDetailByUserId" parameterType="java.lang.Integer" resultMap="DeliveryDetailMap">
+    select id, driver_id, truck_id, delivery_time
+    from delivery d, user_delivery ud
+    where id = ud.delivery_id
+    and ud.user_id = #{userId}
+  </select>
 </mapper>

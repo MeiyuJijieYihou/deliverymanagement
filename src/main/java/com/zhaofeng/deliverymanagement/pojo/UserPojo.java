@@ -1,5 +1,6 @@
 package com.zhaofeng.deliverymanagement.pojo;
 
+import com.zhaofeng.deliverymanagement.entity.Address;
 import com.zhaofeng.deliverymanagement.entity.Job;
 import com.zhaofeng.deliverymanagement.entity.Role;
 import org.apache.ibatis.type.Alias;
@@ -27,7 +28,7 @@ public class UserPojo {
 
     private List<Role> roleList;
 
-    private List<String> addressList;
+    private List<Address> addressList;
 
 
     public Integer getId() {
@@ -86,11 +87,11 @@ public class UserPojo {
         this.roleList = roleList;
     }
 
-    public List<String> getAddressList() {
+    public List<Address> getAddressList() {
         return addressList;
     }
 
-    public void setAddressList(List<String> addressList) {
+    public void setAddressList(List<Address> addressList) {
         this.addressList = addressList;
     }
 }

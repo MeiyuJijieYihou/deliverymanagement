@@ -156,7 +156,7 @@
       <result column="name" property="name" />
     </association>
     <collection column="id" ofType="com.zhaofeng.deliverymanagement.entity.Role" property="roleList" select="com.zhaofeng.deliverymanagement.repository.RoleMapper.selectByPrimaryKey" />
-    <collection column="id" ofType="java.lang.String" property="addressList" select="com.zhaofeng.deliverymanagement.repository.UserAddressMapper.selectAllByUserId" />
+    <collection column="id" ofType="com.zhaofeng.deliverymanagement.entity.Address" property="addressList" select="com.zhaofeng.deliverymanagement.repository.AddressMapper.selectByUserId" />
   </resultMap>
 
   <!-- 查询所有普通用户 -->
@@ -184,5 +184,11 @@
     where job_id is not null
   </select>
 
-
+  <!-- 根据发货记录id查询装卸工 -->
+  <select id="selectByDeliveryId" parameterType="java.lang.Integer" resultMap="UserDetailMap">
+    select id, realname
+    from user u, delivery_loader dl
+    where u.id = dl.loader_id
+    and delivery_id = #{deliveryId}
+  </select>
 </mapper>

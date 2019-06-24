@@ -1,6 +1,9 @@
 package com.zhaofeng.deliverymanagement.repository;
 
 import com.zhaofeng.deliverymanagement.entity.Delivery;
+import com.zhaofeng.deliverymanagement.pojo.DeliveryPojo;
+
+import java.util.List;
 
 public interface DeliveryMapper {
     /**
@@ -50,4 +53,13 @@ public interface DeliveryMapper {
      * @mbg.generated Mon Jun 24 15:26:49 CST 2019
      */
     int updateByPrimaryKey(Delivery record);
+
+
+    /**
+     * 根据用户id
+     *
+     * @param
+     * @return
+     */
+    List<DeliveryPojo> selectAllDeliveryDetailByUserId(Integer userId);
 }

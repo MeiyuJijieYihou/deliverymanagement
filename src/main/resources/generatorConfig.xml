@@ -36,6 +36,13 @@
          <!--enableSelectByExample="false"-->
          <!--selectByExampleQueryId="false">-->
     <!--</table>-->
+    <!--<table tableName="address"-->
+         <!--enableCountByExample="false"-->
+         <!--enableUpdateByExample="false"-->
+         <!--enableDeleteByExample="false"-->
+         <!--enableSelectByExample="false"-->
+         <!--selectByExampleQueryId="false">-->
+    <!--</table>-->
     <!--<table tableName="user_address"-->
          <!--enableCountByExample="false"-->
          <!--enableUpdateByExample="false"-->
@@ -107,6 +114,12 @@
          <!--selectByExampleQueryId="false">-->
     <!--</table>-->
 
-    
+      <!--<table tableName="user_delivery"-->
+      <!--enableCountByExample="false"-->
+      <!--enableUpdateByExample="false"-->
+      <!--enableDeleteByExample="false"-->
+      <!--enableSelectByExample="false"-->
+      <!--selectByExampleQueryId="false">-->
+      <!--</table>-->
   </context>
 </generatorConfiguration>

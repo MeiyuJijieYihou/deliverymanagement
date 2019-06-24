@@ -80,4 +80,11 @@ public interface UserMapper {
     List<UserPojo> selectAllEmployee();
 
 
+    /**
+     * 根据发货记录id获取装卸工
+     *
+     * @param
+     * @return 
+     */
+    List<UserPojo> selectByDeliveryId(Integer deliveryId);
 }
