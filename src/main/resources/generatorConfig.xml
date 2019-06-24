@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+  <context id="context1">
+    <jdbcConnection
+        connectionURL="jdbc:mysql://localhost:3306/deliverymanagement?
+            characterEncoding=utf8&amp;serverTimezone=UTC&amp;useSSL=false"
+        driverClass="com.mysql.cj.jdbc.Driver"
+        password="123456"
+        userId="root">
+        <!-- 只扫描指定的表 -->
+        <property name="nullCatalogMeansCurrent" value="true"/>
+        </jdbcConnection>
+    <javaModelGenerator targetPackage="com.zhaofeng.deliverymanagement.entity" targetProject=".\src\main\java" />
+    <sqlMapGenerator targetPackage="mybatis.mapper" targetProject=".\src\main\resources" />
+    <javaClientGenerator targetPackage="com.zhaofeng.deliverymanagement.repository" targetProject=".\src\main\java" type="XMLMAPPER" />
+    
+     <table tableName="user"
+           enableCountByExample="false"
+           enableUpdateByExample="false"
+           enableDeleteByExample="false"
+           enableSelectByExample="false"
+           selectByExampleQueryId="false">
+    </table>
+    <table tableName="job"
+           enableCountByExample="false"
+           enableUpdateByExample="false"
+           enableDeleteByExample="false"
+           enableSelectByExample="false"
+           selectByExampleQueryId="false">
+    </table>
+    <table tableName="user_job"
+         enableCountByExample="false"
+         enableUpdateByExample="false"
+         enableDeleteByExample="false"
+         enableSelectByExample="false"
+         selectByExampleQueryId="false">
+    </table>
+    <table tableName="user_address"
+         enableCountByExample="false"
+         enableUpdateByExample="false"
+         enableDeleteByExample="false"
+         enableSelectByExample="false"
+         selectByExampleQueryId="false">
+    </table>
+    <table tableName="role"
+           enableCountByExample="false"
+           enableUpdateByExample="false"
+           enableDeleteByExample="false"
+           enableSelectByExample="false"
+           selectByExampleQueryId="false">
+    </table>
+    <table tableName="user_role"
+         enableCountByExample="false"
+         enableUpdateByExample="false"
+         enableDeleteByExample="false"
+         enableSelectByExample="false"
+         selectByExampleQueryId="false">
+    </table>
+    <table tableName="cement"
+           enableCountByExample="false"
+           enableUpdateByExample="false"
+           enableDeleteByExample="false"
+           enableSelectByExample="false"
+           selectByExampleQueryId="false">
+    </table>
+    <table tableName="order"
+         enableCountByExample="false"
+         enableUpdateByExample="false"
+         enableDeleteByExample="false"
+         enableSelectByExample="false"
+         selectByExampleQueryId="false">
+    </table>
+    <table tableName="user_order"
+         enableCountByExample="false"
+         enableUpdateByExample="false"
+         enableDeleteByExample="false"
+         enableSelectByExample="false"
+         selectByExampleQueryId="false">
+    </table>
+    <table tableName="truck"
+         enableCountByExample="false"
+         enableUpdateByExample="false"
+         enableDeleteByExample="false"
+         enableSelectByExample="false"
+         selectByExampleQueryId="false">
+    </table>
+    <table tableName="delivery"
+         enableCountByExample="false"
+         enableUpdateByExample="false"
+         enableDeleteByExample="false"
+         enableSelectByExample="false"
+         selectByExampleQueryId="false">
+    </table>
+    <table tableName="delivery_order"
+         enableCountByExample="false"
+         enableUpdateByExample="false"
+         enableDeleteByExample="false"
+         enableSelectByExample="false"
+         selectByExampleQueryId="false">
+    </table>
+    <table tableName="delivery_loader"
+         enableCountByExample="false"
+         enableUpdateByExample="false"
+         enableDeleteByExample="false"
+         enableSelectByExample="false"
+         selectByExampleQueryId="false">
+    </table>
+
+    
+  </context>
+</generatorConfiguration>
