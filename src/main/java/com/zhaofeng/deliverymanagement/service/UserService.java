@@ -13,6 +13,8 @@ public interface UserService {
 
     JsonResult getAllCustomer();
 
+    JsonResult getCustomerByUserId(Integer userId);
+
     JsonResult getAllEmployee();
 
 }

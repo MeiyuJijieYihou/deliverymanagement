@@ -32,19 +32,28 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public JsonResult getAllCustomer() {
-        List<UserPojo> userList = userMapper.selectAllCustomer();
-        if (userList == null || userList.isEmpty()) {
+        List<UserPojo> customerList = userMapper.selectAllCustomer();
+        if (customerList == null || customerList.isEmpty()) {
             return new JsonResult(RtCode.DB_ERROR, "数据库访问异常");
         }
-        return new JsonResult(userList);
+        return new JsonResult(customerList);
+    }
+
+    @Override
+    public JsonResult getCustomerByUserId(Integer userId) {
+        List<UserPojo> customerList = userMapper.selectCustomerByUserId(userId);
+        if (customerList == null || customerList.isEmpty()) {
+            return new JsonResult(RtCode.DB_ERROR, "数据库访问异常");
+        }
+        return new JsonResult(customerList);
     }
 
     @Override
     public JsonResult getAllEmployee() {
-        List<UserPojo> userList = userMapper.selectAllEmployee();
-        if (userList == null || userList.isEmpty()) {
+        List<UserPojo> employeeList = userMapper.selectAllEmployee();
+        if (employeeList == null || employeeList.isEmpty()) {
             return new JsonResult(RtCode.DB_ERROR, "数据库访问异常");
         }
-        return new JsonResult(userList);
+        return new JsonResult(employeeList);
     }
 }

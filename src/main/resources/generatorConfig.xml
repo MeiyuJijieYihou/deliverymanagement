@@ -15,26 +15,19 @@
     <sqlMapGenerator targetPackage="mybatis.mapper" targetProject=".\src\main\resources" />
     <javaClientGenerator targetPackage="com.zhaofeng.deliverymanagement.repository" targetProject=".\src\main\java" type="XMLMAPPER" />
 
-     <!--<table tableName="user"-->
-           <!--enableCountByExample="false"-->
-           <!--enableUpdateByExample="false"-->
-           <!--enableDeleteByExample="false"-->
-           <!--enableSelectByExample="false"-->
-           <!--selectByExampleQueryId="false">-->
-    <!--</table>-->
+     <table tableName="user"
+           enableCountByExample="false"
+           enableUpdateByExample="false"
+           enableDeleteByExample="false"
+           enableSelectByExample="false"
+           selectByExampleQueryId="false">
+    </table>
     <!--<table tableName="job"-->
            <!--enableCountByExample="false"-->
            <!--enableUpdateByExample="false"-->
            <!--enableDeleteByExample="false"-->
            <!--enableSelectByExample="false"-->
            <!--selectByExampleQueryId="false">-->
-    <!--</table>-->
-    <!--<table tableName="user_job"-->
-         <!--enableCountByExample="false"-->
-         <!--enableUpdateByExample="false"-->
-         <!--enableDeleteByExample="false"-->
-         <!--enableSelectByExample="false"-->
-         <!--selectByExampleQueryId="false">-->
     <!--</table>-->
     <!--<table tableName="address"-->
          <!--enableCountByExample="false"-->
@@ -43,13 +36,7 @@
          <!--enableSelectByExample="false"-->
          <!--selectByExampleQueryId="false">-->
     <!--</table>-->
-    <!--<table tableName="user_address"-->
-         <!--enableCountByExample="false"-->
-         <!--enableUpdateByExample="false"-->
-         <!--enableDeleteByExample="false"-->
-         <!--enableSelectByExample="false"-->
-         <!--selectByExampleQueryId="false">-->
-    <!--</table>-->
+
     <!--<table tableName="role"-->
            <!--enableCountByExample="false"-->
            <!--enableUpdateByExample="false"-->
@@ -78,13 +65,7 @@
          <!--enableSelectByExample="false"-->
          <!--selectByExampleQueryId="false">-->
     <!--</table>-->
-    <!--<table tableName="user_order"-->
-         <!--enableCountByExample="false"-->
-         <!--enableUpdateByExample="false"-->
-         <!--enableDeleteByExample="false"-->
-         <!--enableSelectByExample="false"-->
-         <!--selectByExampleQueryId="false">-->
-    <!--</table>-->
+
     <!--<table tableName="truck"-->
          <!--enableCountByExample="false"-->
          <!--enableUpdateByExample="false"-->
@@ -99,13 +80,7 @@
          <!--enableSelectByExample="false"-->
          <!--selectByExampleQueryId="false">-->
     <!--</table>-->
-    <!--<table tableName="delivery_order"-->
-         <!--enableCountByExample="false"-->
-         <!--enableUpdateByExample="false"-->
-         <!--enableDeleteByExample="false"-->
-         <!--enableSelectByExample="false"-->
-         <!--selectByExampleQueryId="false">-->
-    <!--</table>-->
+
     <!--<table tableName="delivery_loader"-->
          <!--enableCountByExample="false"-->
          <!--enableUpdateByExample="false"-->
@@ -114,12 +89,5 @@
          <!--selectByExampleQueryId="false">-->
     <!--</table>-->
 
-      <!--<table tableName="user_delivery"-->
-      <!--enableCountByExample="false"-->
-      <!--enableUpdateByExample="false"-->
-      <!--enableDeleteByExample="false"-->
-      <!--enableSelectByExample="false"-->
-      <!--selectByExampleQueryId="false">-->
-      <!--</table>-->
   </context>
 </generatorConfiguration>

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import springfox.documentation.spring.web.json.Json;
 
 /**
  * @author zhaofeng
@@ -26,6 +27,11 @@ public class UserController {
     @RequestMapping(value = "/getAllCustomer", method = RequestMethod.GET)
     public JsonResult getAllCustomer() {
         return userService.getAllCustomer();
+    }
+
+    @RequestMapping(value = "/getCustomerByUserId", method = RequestMethod.POST)
+    public JsonResult getCustomerByUserId(Integer userId) {
+        return userService.getCustomerByUserId(userId);
     }
 
     @RequestMapping(value = "/getAllEmployee", method = RequestMethod.GET)
