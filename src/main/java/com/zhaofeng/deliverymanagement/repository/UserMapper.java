@@ -1,6 +1,6 @@
 package com.zhaofeng.deliverymanagement.repository;
 
-import com.zhaofeng.deliverymanagement.entity.User;
+import com.zhaofeng.deliverymanagement.model.entity.User;
 import com.zhaofeng.deliverymanagement.pojo.UserPojo;
 
 import java.util.List;
@@ -55,34 +55,42 @@ public interface UserMapper {
     int updateByPrimaryKey(User record);
 
     /**
-         * 获取所有普通用户
-         *
-         * @param
-         * @return
-         */
-        List<UserPojo> selectAllNormalUser();
+     * 获取所有普通用户
+     *
+     * @param
+     * @return
+     */
+    List<UserPojo> selectAllNormalUser();
 
-        /**
-         * 获取所有客户
-         *
-         * @param
-         * @return
-         */
-        List<UserPojo> selectAllCustomer();
+    /**
+     * 获取所有客户
+     *
+     * @param
+     * @return
+     */
+    List<UserPojo> selectAllCustomer();
 
-        /**
-         * 根据用户id获取客户
-         *
-         * @param
-         * @return
-         */
-        List<UserPojo> selectCustomerByUserId(Integer userId);
+    /**
+     * 根据用户id获取客户
+     *
+     * @param
+     * @return
+     */
+    List<UserPojo> selectCustomerByUserId(Integer userId);
 
-        /**
-         * 获取所有员工
-         *
-         * @param
-         * @return
-         */
-        List<UserPojo> selectAllEmployee();
+    /**
+     * 获取所有员工
+     *
+     * @param
+     * @return
+     */
+    List<UserPojo> selectAllEmployee();
+
+    /**
+     * 根据用户id获取员工
+     *
+     * @param
+     * @return
+     */
+    List<UserPojo> selectEmployeeByUserId(Integer userId);
 }

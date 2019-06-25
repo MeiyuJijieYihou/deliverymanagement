@@ -11,17 +11,17 @@
         <!-- 只扫描指定的表 -->
         <property name="nullCatalogMeansCurrent" value="true"/>
         </jdbcConnection>
-    <javaModelGenerator targetPackage="com.zhaofeng.deliverymanagement.entity" targetProject=".\src\main\java" />
+    <javaModelGenerator targetPackage="com.zhaofeng.deliverymanagement.model.entity" targetProject=".\src\main\java" />
     <sqlMapGenerator targetPackage="mybatis.mapper" targetProject=".\src\main\resources" />
     <javaClientGenerator targetPackage="com.zhaofeng.deliverymanagement.repository" targetProject=".\src\main\java" type="XMLMAPPER" />
 
-     <table tableName="user"
-           enableCountByExample="false"
-           enableUpdateByExample="false"
-           enableDeleteByExample="false"
-           enableSelectByExample="false"
-           selectByExampleQueryId="false">
-    </table>
+     <!--<table tableName="user"-->
+           <!--enableCountByExample="false"-->
+           <!--enableUpdateByExample="false"-->
+           <!--enableDeleteByExample="false"-->
+           <!--enableSelectByExample="false"-->
+           <!--selectByExampleQueryId="false">-->
+    <!--</table>-->
     <!--<table tableName="job"-->
            <!--enableCountByExample="false"-->
            <!--enableUpdateByExample="false"-->
@@ -66,13 +66,13 @@
          <!--selectByExampleQueryId="false">-->
     <!--</table>-->
 
-    <!--<table tableName="truck"-->
-         <!--enableCountByExample="false"-->
-         <!--enableUpdateByExample="false"-->
-         <!--enableDeleteByExample="false"-->
-         <!--enableSelectByExample="false"-->
-         <!--selectByExampleQueryId="false">-->
-    <!--</table>-->
+    <table tableName="truck"
+         enableCountByExample="false"
+         enableUpdateByExample="false"
+         enableDeleteByExample="false"
+         enableSelectByExample="false"
+         selectByExampleQueryId="false">
+    </table>
     <!--<table tableName="delivery"-->
          <!--enableCountByExample="false"-->
          <!--enableUpdateByExample="false"-->

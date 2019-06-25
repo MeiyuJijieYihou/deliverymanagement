@@ -1,6 +1,6 @@
 package com.zhaofeng.deliverymanagement.repository;
 
-import com.zhaofeng.deliverymanagement.entity.DeliveryLoaderKey;
+import com.zhaofeng.deliverymanagement.model.entity.DeliveryLoaderKey;
 
 public interface DeliveryLoaderMapper {
     /**

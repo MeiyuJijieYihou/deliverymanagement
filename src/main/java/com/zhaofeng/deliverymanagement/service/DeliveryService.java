@@ -8,5 +8,5 @@ import com.zhaofeng.deliverymanagement.common.JsonResult;
  */
 
 public interface DeliveryService {
-    JsonResult getAllDeliveryByUserId(Integer userId);
+    JsonResult getDeliveryByUserId(Integer userId);
 }

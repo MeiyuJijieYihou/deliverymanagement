@@ -1,8 +1,8 @@
 package com.zhaofeng.deliverymanagement.pojo;
 
-import com.zhaofeng.deliverymanagement.entity.Address;
-import com.zhaofeng.deliverymanagement.entity.Job;
-import com.zhaofeng.deliverymanagement.entity.Role;
+import com.zhaofeng.deliverymanagement.model.entity.Address;
+import com.zhaofeng.deliverymanagement.model.entity.Job;
+import com.zhaofeng.deliverymanagement.model.entity.Role;
 import org.apache.ibatis.type.Alias;
 
 import java.util.List;

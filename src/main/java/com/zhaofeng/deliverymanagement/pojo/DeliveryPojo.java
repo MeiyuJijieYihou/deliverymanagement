@@ -1,8 +1,8 @@
 package com.zhaofeng.deliverymanagement.pojo;
 
-import com.zhaofeng.deliverymanagement.entity.Orders;
-import com.zhaofeng.deliverymanagement.entity.Truck;
-import com.zhaofeng.deliverymanagement.entity.User;
+import com.zhaofeng.deliverymanagement.model.entity.Orders;
+import com.zhaofeng.deliverymanagement.model.entity.Truck;
+import com.zhaofeng.deliverymanagement.model.entity.User;
 import org.apache.ibatis.type.Alias;
 
 import java.text.SimpleDateFormat;

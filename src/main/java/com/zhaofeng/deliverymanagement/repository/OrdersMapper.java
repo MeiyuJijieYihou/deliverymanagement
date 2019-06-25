@@ -1,8 +1,7 @@
 package com.zhaofeng.deliverymanagement.repository;
 
-import com.zhaofeng.deliverymanagement.entity.Orders;
+import com.zhaofeng.deliverymanagement.model.entity.Orders;
 import com.zhaofeng.deliverymanagement.pojo.OrdersPojo;
-import com.zhaofeng.deliverymanagement.pojo.UserPojo;
 
 import java.util.List;
 
@@ -58,10 +57,27 @@ public interface OrdersMapper {
 
 
     /**
+     * 根据用户id获取订单
      *
      * @param
      * @return 
      */
-    List<OrdersPojo> selectAllOrdersByUserId(Integer userId);
+    List<OrdersPojo> selectOrdersByUserId(Integer userId);
 
+
+    /**
+     * 根据用户id获取所有完成的订单
+     *
+     * @param
+     * @return
+     */
+    List<OrdersPojo> selectUncompletedOrdersByUserId(Integer userId);
+
+    /**
+     * 根据用户id和客户id获取订单
+     *
+     * @param
+     * @return 
+     */
+    List<OrdersPojo> selectOrdersByUserIdAndCustomerId(Integer userId, Integer customerId);
 }

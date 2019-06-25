@@ -1,6 +1,6 @@
 package com.zhaofeng.deliverymanagement.repository;
 
-import com.zhaofeng.deliverymanagement.entity.Cement;
+import com.zhaofeng.deliverymanagement.model.entity.Cement;
 
 public interface CementMapper {
     /**

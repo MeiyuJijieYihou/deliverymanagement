@@ -21,8 +21,8 @@ public class DeliveryServicImpl implements DeliveryService {
     private DeliveryMapper deliveryMapper;
 
     @Override
-    public JsonResult getAllDeliveryByUserId(Integer userId) {
-        List<DeliveryPojo> deliveryList = deliveryMapper.selectAllDeliveryDetailByUserId(userId);
+    public JsonResult getDeliveryByUserId(Integer userId) {
+        List<DeliveryPojo> deliveryList = deliveryMapper.selectDeliveryDetailByUserId(userId);
         if (deliveryList == null || deliveryList.isEmpty()) {
             return new JsonResult("参数或数据库错误");
         }

@@ -1,6 +1,6 @@
 package com.zhaofeng.deliverymanagement.repository;
 
-import com.zhaofeng.deliverymanagement.entity.Job;
+import com.zhaofeng.deliverymanagement.model.entity.Job;
 
 public interface JobMapper {
     /**

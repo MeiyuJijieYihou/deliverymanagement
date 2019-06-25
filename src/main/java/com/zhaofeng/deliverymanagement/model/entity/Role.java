@@ -1,4 +1,4 @@
-package com.zhaofeng.deliverymanagement.entity;
+package com.zhaofeng.deliverymanagement.model.entity;
 
 public class Role {
     /**

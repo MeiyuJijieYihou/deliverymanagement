@@ -1,6 +1,6 @@
 package com.zhaofeng.deliverymanagement.repository;
 
-import com.zhaofeng.deliverymanagement.entity.UserRoleKey;
+import com.zhaofeng.deliverymanagement.model.entity.UserRoleKey;
 
 public interface UserRoleMapper {
     /**

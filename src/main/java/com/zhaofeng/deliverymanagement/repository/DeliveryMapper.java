@@ -1,6 +1,6 @@
 package com.zhaofeng.deliverymanagement.repository;
 
-import com.zhaofeng.deliverymanagement.entity.Delivery;
+import com.zhaofeng.deliverymanagement.model.entity.Delivery;
 import com.zhaofeng.deliverymanagement.pojo.DeliveryPojo;
 
 import java.util.List;
@@ -59,5 +59,5 @@ public interface DeliveryMapper {
      * @param
      * @return 
      */
-    List<DeliveryPojo> selectAllDeliveryDetailByUserId(Integer userId);
+    List<DeliveryPojo> selectDeliveryDetailByUserId(Integer userId);
 }

@@ -1,6 +1,6 @@
 package com.zhaofeng.deliverymanagement.repository;
 
-import com.zhaofeng.deliverymanagement.entity.Address;
+import com.zhaofeng.deliverymanagement.model.entity.Address;
 
 import java.util.List;
 
