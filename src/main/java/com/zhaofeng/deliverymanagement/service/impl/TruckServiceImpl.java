@@ -1,6 +1,7 @@
 package com.zhaofeng.deliverymanagement.service.impl;
 
 import com.zhaofeng.deliverymanagement.common.JsonResult;
+import com.zhaofeng.deliverymanagement.exception.AlreadyExistsException;
 import com.zhaofeng.deliverymanagement.model.entity.Truck;
 import com.zhaofeng.deliverymanagement.repository.TruckMapper;
 import com.zhaofeng.deliverymanagement.service.TruckService;
@@ -21,6 +22,11 @@ public class TruckServiceImpl implements TruckService {
     private TruckMapper truckMapper;
 
     @Override
+    public JsonResult getByTruckId(Integer truckId) {
+        return null;
+    }
+
+    @Override
     public JsonResult getByUserId(Integer userId) {
         List<Truck> truckList = truckMapper.selectByUserId(userId);
         if (truckList == null || truckList.isEmpty()) {
@@ -31,12 +37,18 @@ public class TruckServiceImpl implements TruckService {
 
     @Override
     public JsonResult addTruck(Truck truck) {
+        int count = truckMapper.countByUserIdAnLicensePlate(truck.getUserId(), truck.getLicensePlate());
+        if (count > 0) {
+            throw new AlreadyExistsException("该车辆已存在").setErrorData(truck);
+        }
+
         truckMapper.insert(truck);
         return new JsonResult();
     }
 
     @Override
     public JsonResult updateTruck(Truck truck) {
+
         truckMapper.updateByPrimaryKey(truck);
         return new JsonResult();
     }

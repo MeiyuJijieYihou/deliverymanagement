@@ -170,9 +170,22 @@
     <collection column="id" ofType="com.zhaofeng.deliverymanagement.model.entity.Address" property="addressList" select="com.zhaofeng.deliverymanagement.repository.AddressMapper.selectByCustomerId" />
   </resultMap>
 
+  <!-- 用户简单信息 -->
+  <resultMap id="SimpleUserMap" type="SimpleUserPojo">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="realname" jdbcType="VARCHAR" property="realname" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <association javaType="com.zhaofeng.deliverymanagement.model.entity.Job" property="job">
+      <id column="job_id" property="id" />
+      <result column="name" property="name" />
+    </association>
+    </resultMap>
+
   <!-- 查询所有普通用户 -->
-  <select id="selectAllNormalUser" resultMap="UserDetailMap">
-    select id, username, password, realname, phone
+  <select id="selectAllNormalUser" resultMap="SimpleUserMap">
+    select id, username, realname, phone
     from user u, user_role ur
     where u.id = ur.user_id
     and
@@ -180,8 +193,8 @@
   </select>
 
   <!-- 查询所有客户 -->
-  <select id="selectAllCustomer" resultMap="UserDetailMap">
-    select id, username, password, realname, phone
+  <select id="selectAllCustomer" resultMap="SimpleUserMap">
+    select id, username, realname, phone
     from user
     where id not in
     (select distinct user_id from user_role)
@@ -189,34 +202,62 @@
   </select>
 
   <!-- 根据用户id查询客户 -->
-  <select id="selectCustomerByUserId" resultMap="UserDetailMap">
-    select id, username, password, realname, phone
+  <select id="selectCustomerByUserId" resultMap="SimpleUserMap">
+    select id, username, realname, phone
     from user
     where owner_id = #{userId}
     and job_id is null
   </select>
 
   <!-- 查询所有员工 -->
-  <select id="selectAllEmployee" resultMap="UserDetailMap">
-    select id, username, password, realname, phone
+  <select id="selectAllEmployee" resultMap="SimpleUserMap">
+    select id, username, realname, phone
     from user
     where job_id is not null
   </select>
 
   <!-- 根据用户id查询员工 -->
-  <select id="selectEmployeeByUserId" resultMap="UserDetailMap">
-    select id, username, password, realname, phone
+  <select id="selectEmployeeByUserId" resultMap="SimpleUserMap">
+    select id, username, realname, phone
     from user
     where owner_id = #{userId}
-    and job_id is null
+    and job_id is not null
   </select>
 
   <!-- 根据发货记录id查询装卸工 -->
-  <select id="selectByDeliveryId" parameterType="java.lang.Integer" resultMap="UserDetailMap">
+  <select id="selectByDeliveryId" parameterType="java.lang.Integer" resultMap="SimpleUserMap">
     select id, realname
     from user u, delivery_loader dl
     where u.id = dl.loader_id
     and delivery_id = #{deliveryId}
+  </select>
+
+
+  <!-- 统计真实姓名姓名与指定的姓名相同的普通用户数量 -->
+  <select id="countByRealnameUnderNormalUser" parameterType="java.lang.String" resultType="java.lang.Integer">
+    select count(*)
+    from user
+    where owner_id is null
+    and username = #{username}
+  </select>
+
+
+  <!-- 统计真实姓名姓名与指定的姓名相同的客户数量 -->
+  <select id="countByOwnerIdAndRealnameUnderCustomer" resultType="java.lang.Integer">
+    select count(*)
+    from user
+    where owner_id = #{ownerId}
+    and job_id is null
+    and realname = #{realname}
+  </select>
+
+  <!-- 统计真实姓名姓名与指定的姓名相同的员工数量 -->
+  <select id="countByOwnerIdAndRealnameUnderEmployee" resultType="java.lang.Integer">
+    select count(*)
+    from user
+    where owner_id = #{ownerId}
+    and job_id is not null
+    and realname = #{realname}
   </select>
 
 </mapper>

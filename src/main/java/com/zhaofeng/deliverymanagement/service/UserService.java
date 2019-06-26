@@ -2,6 +2,7 @@ package com.zhaofeng.deliverymanagement.service;
 
 import com.zhaofeng.deliverymanagement.common.JsonResult;
 import com.zhaofeng.deliverymanagement.model.entity.User;
+import org.springframework.lang.NonNull;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
@@ -30,4 +31,6 @@ public interface UserService {
     @Transactional
     JsonResult addEmployee(User user);
 
+    @NonNull
+    JsonResult updatePassword(@NonNull String oldPassword, @NonNull String newPassword, @NonNull Integer userId);
 }

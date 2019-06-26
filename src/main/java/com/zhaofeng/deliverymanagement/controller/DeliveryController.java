@@ -1,13 +1,16 @@
 package com.zhaofeng.deliverymanagement.controller;
 
 import com.zhaofeng.deliverymanagement.common.JsonResult;
+import com.zhaofeng.deliverymanagement.model.entity.Delivery;
+import com.zhaofeng.deliverymanagement.model.params.DeliveryParam;
 import com.zhaofeng.deliverymanagement.service.DeliveryService;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
+import java.util.Set;
 
 /**
  * @author zhaofeng
@@ -15,15 +18,22 @@ import org.springframework.web.bind.annotation.RestController;
  */
 
 @RestController
-@RequestMapping("/delivery")
+@RequestMapping("/api/delivery")
 public class DeliveryController {
     @Autowired
     private DeliveryService deliveryService;
 
 
-    @PostMapping("/getDeliveryByUserId")
+    @GetMapping("/{userId}")
     @ApiOperation("根据用户id获取发货记录")
-    public JsonResult getDeliveryByUserId(Integer userId) {
+    public JsonResult getDeliveryByUserId(@ApiParam("用户id") @PathVariable("userId") Integer userId) {
         return deliveryService.getDeliveryByUserId(userId);
+    }
+
+    @PostMapping("/add")
+    @ApiOperation("添加发货记录")
+    public JsonResult addDelivery(@ApiParam("发货记录信息") @Valid @RequestBody DeliveryParam deliveryParam) {
+        Delivery delivery = deliveryParam.convertTo();
+        return deliveryService.addDelivery(delivery, deliveryParam.getOrderIds(), deliveryParam.getLoaderIds());
     }
 }

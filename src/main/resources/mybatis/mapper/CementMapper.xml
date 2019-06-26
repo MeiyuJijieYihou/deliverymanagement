@@ -95,4 +95,9 @@
     set name = #{name,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, name
+    from cement
+  </select>
 </mapper>

@@ -22,11 +22,11 @@ public class NormalUserParam implements InputConverter<User> {
     private String password;
 
     @NotBlank(message = "真实姓名")
-    @Size(max = 20, message = "真实姓名的字符长度不能超过{max}")
+    @Size(max = 20, message = "真实姓名的字符长度不能超过 {max}")
     private String realname;
 
     @NotBlank
-    @Size(min = 11, max = 16, message = "联系电话字符长度需在{min}到{max}之间")
+    @Size(min = 11, max = 16, message = "联系电话字符长度必须在 {min} - {max} 之间")
     private String phone;
 
 }

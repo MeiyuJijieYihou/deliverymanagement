@@ -80,4 +80,12 @@ public interface OrdersMapper {
      * @return 
      */
     List<OrdersPojo> selectOrdersByUserIdAndCustomerId(Integer userId, Integer customerId);
+    
+    /**
+     * 设置订单所属发货记录
+     *
+     * @param
+     * @return 
+     */
+    Integer updateDeliveryIdByOrderId(Integer id, Integer deliveryId);
 }

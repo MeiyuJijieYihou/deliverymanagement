@@ -9,6 +9,8 @@ import com.zhaofeng.deliverymanagement.model.entity.Truck;
  */
 
 public interface TruckService {
+    JsonResult getByTruckId(Integer truckId);
+
     JsonResult getByUserId(Integer userId);
 
     JsonResult addTruck(Truck truck);

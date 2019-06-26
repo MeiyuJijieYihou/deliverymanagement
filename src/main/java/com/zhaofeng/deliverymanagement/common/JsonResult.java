@@ -11,24 +11,24 @@ import java.io.Serializable;
  */
 public class JsonResult<T> implements Serializable {
     private T data;
-    private int code;
+    private int status;
     private String message;
 
     /**
      * 若没有数据返回，默认状态码为 0，提示信息为“操作成功！”
      */
     public JsonResult() {
-        this.code = RtCode.SUCCESS;
+        this.status = RtCode.SUCCESS;
         this.message = "success";
     }
 
     /**
      * 若没有数据返回，可以人为指定状态码和提示信息
-     * @param code
+     * @param status
      * @param msg
      */
-    public JsonResult(int code, String msg) {
-        this.code = code;
+    public JsonResult(int status, String msg) {
+        this.status = status;
         this.message = msg;
     }
 
@@ -38,7 +38,7 @@ public class JsonResult<T> implements Serializable {
      */
     public JsonResult(T data) {
         this.data = data;
-        this.code = RtCode.SUCCESS;
+        this.status = RtCode.SUCCESS;
         this.message = "success";
     }
 
@@ -49,7 +49,7 @@ public class JsonResult<T> implements Serializable {
      */
     public JsonResult(T data, String msg) {
         this.data = data;
-        this.code = RtCode.SUCCESS;
+        this.status = RtCode.SUCCESS;
         this.message = msg;
     }
 
@@ -62,11 +62,11 @@ public class JsonResult<T> implements Serializable {
     }
 
     public int getCode() {
-        return code;
+        return status;
     }
 
-    public void setCode(int code) {
-        this.code = code;
+    public void setCode(int status) {
+        this.status = status;
     }
 
     public String getMessage() {

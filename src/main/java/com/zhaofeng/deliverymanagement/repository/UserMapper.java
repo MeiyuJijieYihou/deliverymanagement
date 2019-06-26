@@ -1,7 +1,7 @@
 package com.zhaofeng.deliverymanagement.repository;
 
 import com.zhaofeng.deliverymanagement.model.entity.User;
-import com.zhaofeng.deliverymanagement.pojo.UserPojo;
+import com.zhaofeng.deliverymanagement.pojo.SimpleUserPojo;
 
 import java.util.List;
 
@@ -60,7 +60,7 @@ public interface UserMapper {
      * @param
      * @return
      */
-    List<UserPojo> selectAllNormalUser();
+    List<SimpleUserPojo> selectAllNormalUser();
 
     /**
      * 获取所有客户
@@ -68,7 +68,7 @@ public interface UserMapper {
      * @param
      * @return
      */
-    List<UserPojo> selectAllCustomer();
+    List<SimpleUserPojo> selectAllCustomer();
 
     /**
      * 根据用户id获取客户
@@ -76,7 +76,7 @@ public interface UserMapper {
      * @param
      * @return
      */
-    List<UserPojo> selectCustomerByUserId(Integer userId);
+    List<SimpleUserPojo> selectCustomerByUserId(Integer userId);
 
     /**
      * 获取所有员工
@@ -84,7 +84,7 @@ public interface UserMapper {
      * @param
      * @return
      */
-    List<UserPojo> selectAllEmployee();
+    List<SimpleUserPojo> selectAllEmployee();
 
     /**
      * 根据用户id获取员工
@@ -92,5 +92,31 @@ public interface UserMapper {
      * @param
      * @return
      */
-    List<UserPojo> selectEmployeeByUserId(Integer userId);
+    List<SimpleUserPojo> selectEmployeeByUserId(Integer userId);
+
+    /**
+     * 统计真实姓名姓名与指定的姓名相同的普通用户数量
+     *
+     * @param
+     * @return
+     */
+    Integer countByRealnameUnderNormalUser(String username);
+
+    /**
+     * 统计真实姓名姓名与指定的姓名相同的客户数量
+     *
+     * @param
+     * @return
+     */
+    Integer countByOwnerIdAndRealnameUnderCustomer(Integer ownerId, String realname);
+
+
+    /**
+     * 统计真实姓名姓名与指定的姓名相同的员工数量
+     *
+     * @param
+     * @return
+     */
+    Integer countByOwnerIdAndRealnameUnderEmployee(Integer ownerId, String realname);
+
 }

@@ -29,7 +29,10 @@ public class OrdersPojo {
 
     private Date createdTime;
 
-    private Boolean status;
+    private Integer userId;
+
+    private Integer deliveryId;
+
 
     public Integer getId() {
         return id;
@@ -94,11 +97,20 @@ public class OrdersPojo {
         this.createdTime = createdTime;
     }
 
-    public Boolean getStatus() {
-        return status;
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setStatus(Boolean status) {
-        this.status = status;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
+
+    public Integer getDeliveryId() {
+        return deliveryId;
+    }
+
+    public void setDeliveryId(Integer deliveryId) {
+        this.deliveryId = deliveryId;
+    }
+
 }

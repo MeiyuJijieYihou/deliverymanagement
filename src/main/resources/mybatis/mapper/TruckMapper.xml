@@ -122,8 +122,16 @@
 
   <!-- 根据用户id获取车辆信息 -->
   <select id="selectByUserId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select id, lisence_plate, max_capacity
+    select id, license_plate, max_capacity
     from truck
     where user_id = #{userId}
+  </select>
+
+  <!-- 根据用户id获取指定车牌号的数量 -->
+  <select id="countByUserIdAnLicensePlate" resultType="java.lang.Integer">
+    select count(*)
+    from truck
+    where user_id = #{userId}
+    and license_plate = #{licensePlate}
   </select>
 </mapper>

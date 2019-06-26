@@ -190,7 +190,8 @@
     <result column="unit_price" jdbcType="DOUBLE" property="unitPrice" />
     <result column="num" jdbcType="DOUBLE" property="num" />
     <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
-    <result column="status" jdbcType="BIT" property="status" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="delivery_id" jdbcType="INTEGER" property="deliveryId" />
 
     <!-- 需要用到sql语句中的customer_id -->
     <association javaType="com.zhaofeng.deliverymanagement.model.entity.User" property="customer"
@@ -206,16 +207,16 @@
     </association>
   </resultMap>
 
-  <!-- 根据用户id获取订单 -->
+  <!-- 根据用户id获取所有订单 -->
   <select id="selectOrdersByUserId" resultMap="OrdersDetailMap" parameterType="java.lang.Integer">
-    select id, customer_id, address_id, cement_id, unit_price, num, created_time
+    select id, customer_id, address_id, cement_id, unit_price, num, created_time, user_id, delivery_id
     from orders
     where user_id = #{userId}
   </select>
 
   <!-- 根据用户id获取未完成订单 -->
   <select id="selectUncompletedOrdersByUserId" parameterType="java.lang.Integer" resultMap="OrdersDetailMap">
-    select id, customer_id, address_id, cement_id, unit_price, num, created_time
+    select id, customer_id, address_id, cement_id, unit_price, num, created_time, user_id, delivery_id
     from orders
     where user_id = #{userId}
     and delivery_id is null
@@ -223,7 +224,7 @@
 
   <!-- 根据用户id和客户id获取订单 -->
   <select id="selectOrdersByUserIdAndCustomerId" resultMap="OrdersDetailMap">
-    select id, customer_id, address_id, cement_id, unit_price, num, created_time
+    select id, customer_id, address_id, cement_id, unit_price, num, created_time, user_id, delivery_id
     from orders
     where user_id = #{userId}
     and customer_id = #{customerId}
@@ -231,9 +232,15 @@
 
   <!-- 根据发货记录id获取订单 -->
   <select id="selectAllOrdersByDeliveryId" parameterType="java.lang.Integer" resultMap="OrdersDetailMap">
-  select id, customer_id, address_id, cement_id, unit_price, num, created_time
+  select id, customer_id, address_id, cement_id, unit_price, num, created_time, user_id, delivery_id
   from orders
   where delivery_id = #{deliveryId}
   </select>
 
+  <!-- 设置订单所属发货记录 -->
+  <select id="updateDeliveryIdByOrderId">
+  update orders
+  set delivery_id = #{deliveryId}
+  where id = #{id}
+  </select>
 </mapper>

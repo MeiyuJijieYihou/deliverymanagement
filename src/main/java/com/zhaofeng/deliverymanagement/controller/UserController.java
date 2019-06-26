@@ -5,8 +5,10 @@ import com.zhaofeng.deliverymanagement.model.entity.User;
 import com.zhaofeng.deliverymanagement.model.params.CustomerParam;
 import com.zhaofeng.deliverymanagement.model.params.EmployeeParam;
 import com.zhaofeng.deliverymanagement.model.params.NormalUserParam;
+import com.zhaofeng.deliverymanagement.model.params.PasswordParam;
 import com.zhaofeng.deliverymanagement.service.UserService;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,61 +20,50 @@ import javax.validation.Valid;
  */
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/api/user")
 public class UserController {
     @Autowired
     private UserService userService;
 
-    @GetMapping()
-    @ApiOperation("获取所有普通用户")
-    public JsonResult listAllNormalUser() {
-        return userService.getAllNormalUser();
-    }
 
-//    @GetMapping("customer")
-//    @ApiOperation("获取所有客户")
-//    public JsonResult listAllCustomer() {
-//        return userService.getAllCustomer();
-//    }
-
-    @GetMapping("/customer")
+    @GetMapping("/customer/{userId}")
     @ApiOperation("根据用户id获取客户")
-    public JsonResult getCustomerByUserId(@RequestParam("userId") Integer userId) {
+    public JsonResult getCustomerByUserId(@ApiParam("用户id") @PathVariable("userId") Integer userId) {
         return userService.getCustomerByUserId(userId);
     }
 
-//    @GetMapping("employee")
-//    @ApiOperation("获取所有员工")
-//    public JsonResult getAllEmployee() {
-//        return userService.getAllEmployee();
-//    }
 
     @GetMapping("/employee")
     @ApiOperation("根据用户id获取员工")
-    public JsonResult getEmployeeByUserId(Integer userId) {
+    public JsonResult getEmployeeByUserId(@ApiParam("用户id") Integer userId) {
         return userService.getEmployeeByUserId(userId);
     }
 
 
     @PostMapping("/addNormalUser")
     @ApiOperation("添加普通用户")
-    public JsonResult addNormalUser(@Valid @RequestBody NormalUserParam normalUserParam) {
+    public JsonResult addNormalUser(@ApiParam("普通用户信息") @Valid NormalUserParam normalUserParam) {
         User user = normalUserParam.convertTo();
         return userService.addNormalUser(user);
     }
 
     @PostMapping("/addCustomer")
     @ApiOperation("添加客户")
-    public JsonResult addCustomer(@Valid CustomerParam customerParam) {
+    public JsonResult addCustomer(@ApiParam("客户信息") @Valid CustomerParam customerParam) {
         User user = customerParam.convertTo();
         return userService.addCustomer(user);
     }
 
     @PostMapping("/addEmployee")
     @ApiOperation("添加员工")
-    public JsonResult addEmployee(@Valid EmployeeParam employeeParam) {
+    public JsonResult addEmployee(@ApiParam("员工信息") @Valid EmployeeParam employeeParam) {
         User user = employeeParam.convertTo();
         return userService.addEmployee(user);
     }
 
+    @PutMapping("profiles/password")
+    public JsonResult updatePassword(@ApiParam("新旧密码") @RequestBody @Valid PasswordParam passwordParam,
+                                     @ApiParam("用户id") Integer userId) {
+        return userService.updatePassword(passwordParam.getOldPassword(), passwordParam.getNewPassword(), userId);
+    }
 }

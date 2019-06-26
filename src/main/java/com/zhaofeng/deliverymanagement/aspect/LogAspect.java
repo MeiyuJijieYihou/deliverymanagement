@@ -1,5 +1,6 @@
 package com.zhaofeng.deliverymanagement.aspect;
 
+import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
@@ -21,6 +22,7 @@ import java.lang.reflect.Method;
 
 @Aspect
 @Component
+@Slf4j
 public class LogAspect {
 
     private static final Logger logger = LoggerFactory.getLogger(LogAspect.class);
@@ -33,10 +35,10 @@ public class LogAspect {
     public void before(JoinPoint joinPoint){
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = attributes.getRequest();
-        logger.info("URL: " + request.getRequestURL().toString());
-        logger.info("IP: " + request.getRemoteAddr());
+        log.info("URL: " + request.getRequestURL().toString());
+        log.info("IP: " + request.getRemoteAddr());
         MethodSignature signature = (MethodSignature) joinPoint.getSignature();
         Method method = signature.getMethod();
-        logger.info("拦截方法：" + method.getName());
+        log.info("拦截方法：" + method.getName());
     }
 }
