@@ -1,6 +1,7 @@
 package com.zhaofeng.deliverymanagement.controller;
 
 import com.zhaofeng.deliverymanagement.common.JsonResult;
+import com.zhaofeng.deliverymanagement.model.dto.TruckDTO;
 import com.zhaofeng.deliverymanagement.model.entity.Truck;
 import com.zhaofeng.deliverymanagement.model.params.TruckParam;
 import com.zhaofeng.deliverymanagement.service.TruckService;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 /**
  * @author zhaofeng
@@ -27,9 +29,9 @@ public class TruckController {
         return new JsonResult("空数据");
     }
 
-    @GetMapping("/user")
+    @GetMapping("/user/{userId}")
     @ApiOperation("根据用户id获取车辆信息")
-    public JsonResult getTruckByUserId(@ApiParam("用户id") @RequestParam("userId")  Integer userId) {
+    public List<TruckDTO> getTruckByUserId(@ApiParam("用户id") @PathVariable("userId") Integer userId) {
         return truckService.getByUserId(userId);
     }
 
@@ -48,5 +50,11 @@ public class TruckController {
         truck.setId(truckId);
         truckParam.update(truck);
         return truckService.updateTruck(truck);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    @ApiOperation("删除车辆")
+    public JsonResult delete(@ApiParam("车辆id") @PathVariable("id") Integer id) {
+        return truckService.deleteById(id);
     }
 }

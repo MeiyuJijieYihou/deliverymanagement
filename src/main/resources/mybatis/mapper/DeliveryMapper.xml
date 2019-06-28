@@ -150,28 +150,21 @@
 
   </resultMap>
 
-  <!-- 简单发货记录 -->
-  <resultMap id="SimpleDeliveryMap" type="DeliveryPojo">
-    <id column="id" jdbcType="INTEGER" property="id" />
-
-    <result column="delivery_time" jdbcType="TIMESTAMP" property="deliveryTime" />
-
-    <association javaType="com.zhaofeng.deliverymanagement.model.entity.User" property="driver"
-                 column="driver_id" select="com.zhaofeng.deliverymanagement.repository.UserMapper.selectByPrimaryKey">
-    </association>
-    <association javaType="com.zhaofeng.deliverymanagement.model.entity.Truck" property="truck"
-                 column="truck_id" select="com.zhaofeng.deliverymanagement.repository.TruckMapper.selectByPrimaryKey">
-    </association>
-    <collection column="id" ofType="com.zhaofeng.deliverymanagement.model.entity.Orders" property="orderList" select="com.zhaofeng.deliverymanagement.repository.OrdersMapper.selectAllOrdersByDeliveryId" />
-    <collection column="id" ofType="com.zhaofeng.deliverymanagement.model.entity.User" property="loaderList" select="com.zhaofeng.deliverymanagement.repository.UserMapper.selectByDeliveryId" />
-
-  </resultMap>
-
+  <!--&lt;!&ndash; 根据用户id获取所有发货记录 &ndash;&gt;-->
+  <!--<select id="selectDeliveryDetailByUserId" parameterType="java.lang.Integer" resultMap="DeliveryDetailMap">-->
+    <!--select id, driver_id, truck_id, delivery_time-->
+    <!--from delivery-->
+    <!--where user_id = #{userId}-->
+  <!--</select>-->
 
   <!-- 根据用户id获取所有发货记录 -->
-  <select id="selectDeliveryDetailByUserId" parameterType="java.lang.Integer" resultMap="DeliveryDetailMap">
-    select id, driver_id, truck_id, delivery_time
-    from delivery
-    where user_id = #{userId}
+  <select id="selectDeliveryByUserId" parameterType="java.lang.Integer" resultType="SimpleDeliveryPojo">
+    select d.id, realname as driver_name, license_plate, delivery_time
+    from delivery d, user u, truck t
+    where d.driver_id = u.id
+    and d.truck_id = t.id
+    and d.user_id = #{userId}
+
   </select>
+
 </mapper>

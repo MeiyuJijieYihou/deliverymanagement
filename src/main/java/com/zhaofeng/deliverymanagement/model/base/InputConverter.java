@@ -11,7 +11,8 @@ import java.util.Objects;
 /**
  * Converter interface for input DTO.
  *
- * @author johnniang
+ * @author zhaofeng
+ * @date 2019/6/25
  */
 public interface InputConverter<DOMAIN> {
 

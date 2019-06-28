@@ -1,5 +1,6 @@
 package com.zhaofeng.deliverymanagement.repository;
 
+import com.zhaofeng.deliverymanagement.model.dto.TruckDTO;
 import com.zhaofeng.deliverymanagement.model.entity.Truck;
 
 import java.util.List;
@@ -59,7 +60,7 @@ public interface TruckMapper {
      * @param
      * @return 
      */
-    List<Truck> selectByUserId(Integer userId);
+    List<TruckDTO> selectByUserId(Integer userId);
     
     /**
      * 根据用户id获取指定车牌号的数量

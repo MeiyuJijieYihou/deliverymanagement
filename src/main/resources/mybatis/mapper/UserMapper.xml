@@ -193,8 +193,8 @@
   </select>
 
   <!-- 查询所有客户 -->
-  <select id="selectAllCustomer" resultMap="SimpleUserMap">
-    select id, username, realname, phone
+  <select id="selectAllCustomer" resultType="com.zhaofeng.deliverymanagement.model.dto.CustomerDTO">
+    select id, realname, phone
     from user
     where id not in
     (select distinct user_id from user_role)
@@ -217,11 +217,30 @@
   </select>
 
   <!-- 根据用户id查询员工 -->
-  <select id="selectEmployeeByUserId" resultMap="SimpleUserMap">
-    select id, username, realname, phone
-    from user
-    where owner_id = #{userId}
+  <select id="selectEmployeeByUserId" resultType="EmployeePojo">
+    select u.id, realname, phone, name as job_name
+    from user u, job j
+    where u.job_id = j.id
+    and owner_id = #{userId}
     and job_id is not null
+  </select>
+
+  <!-- 根据用户id查询司机-->
+  <select id="selectDriverByUserId" resultType="EmployeePojo">
+    select u.id, realname, phone, name as job_name
+    from user u, job j
+    where u.job_id = j.id
+    and owner_id = #{userId}
+    and job_id = 1
+  </select>
+
+  <!-- 根据用户id查询装卸工-->
+  <select id="selectLoaderByUserId" resultType="EmployeePojo">
+    select u.id, realname, phone, name as job_name
+    from user u, job j
+    where u.job_id = j.id
+    and owner_id = #{userId}
+    and job_id = 2
   </select>
 
   <!-- 根据发货记录id查询装卸工 -->

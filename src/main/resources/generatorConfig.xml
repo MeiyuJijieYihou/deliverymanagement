@@ -66,13 +66,13 @@
          <!--selectByExampleQueryId="false">-->
     <!--</table>-->
 
-    <table tableName="truck"
-         enableCountByExample="false"
-         enableUpdateByExample="false"
-         enableDeleteByExample="false"
-         enableSelectByExample="false"
-         selectByExampleQueryId="false">
-    </table>
+    <!--<table tableName="truck"-->
+         <!--enableCountByExample="false"-->
+         <!--enableUpdateByExample="false"-->
+         <!--enableDeleteByExample="false"-->
+         <!--enableSelectByExample="false"-->
+         <!--selectByExampleQueryId="false">-->
+    <!--</table>-->
     <!--<table tableName="delivery"-->
          <!--enableCountByExample="false"-->
          <!--enableUpdateByExample="false"-->

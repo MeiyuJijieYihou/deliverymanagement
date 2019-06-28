@@ -1,7 +1,10 @@
 package com.zhaofeng.deliverymanagement.service;
 
 import com.zhaofeng.deliverymanagement.common.JsonResult;
+import com.zhaofeng.deliverymanagement.model.dto.TruckDTO;
 import com.zhaofeng.deliverymanagement.model.entity.Truck;
+
+import java.util.List;
 
 /**
  * @author zhaofeng
@@ -11,9 +14,11 @@ import com.zhaofeng.deliverymanagement.model.entity.Truck;
 public interface TruckService {
     JsonResult getByTruckId(Integer truckId);
 
-    JsonResult getByUserId(Integer userId);
+    List<TruckDTO> getByUserId(Integer userId);
 
     JsonResult addTruck(Truck truck);
 
     JsonResult updateTruck(Truck truck);
+
+    JsonResult deleteById(Integer id);
 }

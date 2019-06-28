@@ -1,9 +1,13 @@
 package com.zhaofeng.deliverymanagement.service;
 
 import com.zhaofeng.deliverymanagement.common.JsonResult;
+import com.zhaofeng.deliverymanagement.model.dto.CustomerDTO;
 import com.zhaofeng.deliverymanagement.model.entity.User;
+import com.zhaofeng.deliverymanagement.pojo.EmployeePojo;
 import org.springframework.lang.NonNull;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 /**
  * @author zhaofeng
@@ -14,13 +18,17 @@ public interface UserService {
 
     JsonResult getAllNormalUser();
 
-    JsonResult getAllCustomer();
+    List<CustomerDTO> getAllCustomer();
 
     JsonResult getCustomerByUserId(Integer userId);
 
     JsonResult getAllEmployee();
 
-    JsonResult getEmployeeByUserId(Integer userId);
+    List<EmployeePojo> getEmployeeByUserId(Integer userId);
+
+    List<EmployeePojo> getDriverByUserId(Integer userId);
+
+    List<EmployeePojo> getLoaderByUserId(Integer userId);
 
     @Transactional
     JsonResult addNormalUser(User user);

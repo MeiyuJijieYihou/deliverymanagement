@@ -3,6 +3,9 @@ package com.zhaofeng.deliverymanagement.pojo;
 import com.zhaofeng.deliverymanagement.model.entity.Address;
 import com.zhaofeng.deliverymanagement.model.entity.Cement;
 import com.zhaofeng.deliverymanagement.model.entity.User;
+import com.zhaofeng.deliverymanagement.model.vo.OrdersDetailVO;
+import com.zhaofeng.deliverymanagement.repository.OrdersMapper;
+import lombok.Data;
 import org.apache.ibatis.type.Alias;
 
 import java.text.SimpleDateFormat;
@@ -17,11 +20,11 @@ import java.util.Date;
 public class OrdersPojo {
     private Integer id;
 
-    private User customer;
+    private String customerName;
 
-    private Address address;
+    private String addressName;
 
-    private Cement cement;
+    private String cementName;
 
     private Double unitPrice;
 
@@ -29,10 +32,7 @@ public class OrdersPojo {
 
     private Date createdTime;
 
-    private Integer userId;
-
     private Integer deliveryId;
-
 
     public Integer getId() {
         return id;
@@ -42,28 +42,28 @@ public class OrdersPojo {
         this.id = id;
     }
 
-    public User getCustomer() {
-        return customer;
+    public String getCustomerName() {
+        return customerName;
     }
 
-    public void setCustomer(User customer) {
-        this.customer = customer;
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
     }
 
-    public Address getAddress() {
-        return address;
+    public String getAddressName() {
+        return addressName;
     }
 
-    public void setAddress(Address address) {
-        this.address = address;
+    public void setAddressName(String addressName) {
+        this.addressName = addressName;
     }
 
-    public Cement getCement() {
-        return cement;
+    public String getCementName() {
+        return cementName;
     }
 
-    public void setCement(Cement cement) {
-        this.cement = cement;
+    public void setCementName(String cementName) {
+        this.cementName = cementName;
     }
 
     public Double getUnitPrice() {
@@ -82,6 +82,18 @@ public class OrdersPojo {
         this.num = num;
     }
 
+    public void setCreatedTime(Date createdTime) {
+        this.createdTime = createdTime;
+    }
+
+    public Integer getDeliveryId() {
+        return deliveryId;
+    }
+
+    public void setDeliveryId(Integer deliveryId) {
+        this.deliveryId = deliveryId;
+    }
+
     /**
      * 返回类型为字符串的日期
      *
@@ -93,24 +105,18 @@ public class OrdersPojo {
         return simpleDateFormat.format(createdTime);
     }
 
-    public void setCreatedTime(Date createdTime) {
-        this.createdTime = createdTime;
-    }
 
-    public Integer getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
-
-    public Integer getDeliveryId() {
-        return deliveryId;
-    }
-
-    public void setDeliveryId(Integer deliveryId) {
-        this.deliveryId = deliveryId;
-    }
+//    public OrdersDetailVO convertToDetailVO() {
+//        OrdersDetailVO ordersDetailVO = new OrdersDetailVO();
+//        ordersDetailVO.setId(id);
+//        ordersDetailVO.setCustomerName(customer.getRealname());
+//        ordersDetailVO.setAddressName(address.getAddressName());
+//        ordersDetailVO.setCementName(cement.getName());
+//        ordersDetailVO.setUnitPrice(unitPrice);
+//        ordersDetailVO.setNum(num);
+//        ordersDetailVO.setCreatedTime(createdTime);
+//        ordersDetailVO.setDeliveryId(deliveryId);
+//        return ordersDetailVO;
+//    }
 
 }

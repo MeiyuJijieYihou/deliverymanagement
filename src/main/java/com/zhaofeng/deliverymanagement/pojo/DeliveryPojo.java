@@ -18,9 +18,9 @@ import java.util.List;
 public class DeliveryPojo {
     private Integer id;
 
-    private Truck truck;
+    private String licensePlate;
 
-    private User driver;
+    private String driverName;
 
     private List<Orders> orderList;
 
@@ -36,20 +36,20 @@ public class DeliveryPojo {
         this.id = id;
     }
 
-    public Truck getTruck() {
-        return truck;
+    public String getLicensePlate() {
+        return licensePlate;
     }
 
-    public void setTruck(Truck truck) {
-        this.truck = truck;
+    public void setLicensePlate(String licensePlate) {
+        this.licensePlate = licensePlate;
     }
 
-    public User getDriver() {
-        return driver;
+    public String getDriverName() {
+        return driverName;
     }
 
-    public void setDriver(User driver) {
-        this.driver = driver;
+    public void setDriverName(String driverName) {
+        this.driverName = driverName;
     }
 
     public List<Orders> getOrderList() {

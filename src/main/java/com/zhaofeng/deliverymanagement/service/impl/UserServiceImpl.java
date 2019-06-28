@@ -4,7 +4,9 @@ import com.zhaofeng.deliverymanagement.common.JsonResult;
 import com.zhaofeng.deliverymanagement.common.RtCode;
 import com.zhaofeng.deliverymanagement.exception.AlreadyExistsException;
 import com.zhaofeng.deliverymanagement.exception.BadRequestException;
+import com.zhaofeng.deliverymanagement.model.dto.CustomerDTO;
 import com.zhaofeng.deliverymanagement.model.entity.User;
+import com.zhaofeng.deliverymanagement.pojo.EmployeePojo;
 import com.zhaofeng.deliverymanagement.pojo.SimpleUserPojo;
 import com.zhaofeng.deliverymanagement.repository.UserMapper;
 import com.zhaofeng.deliverymanagement.service.UserService;
@@ -36,12 +38,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public JsonResult getAllCustomer() {
-        List<SimpleUserPojo> customerList = userMapper.selectAllCustomer();
-        if (customerList == null || customerList.isEmpty()) {
-            return new JsonResult(RtCode.DB_ERROR, "数据库访问异常");
-        }
-        return new JsonResult(customerList);
+    public List<CustomerDTO> getAllCustomer() {
+        return userMapper.selectAllCustomer();
+//        if (customerList == null || customerList.isEmpty()) {
+//            return new JsonResult(RtCode.DB_ERROR, "数据库访问异常");
+//        }
+//        return new JsonResult(customerList);
     }
 
     @Override
@@ -63,12 +65,18 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public JsonResult getEmployeeByUserId(Integer userId) {
-        List<SimpleUserPojo> employeeList = userMapper.selectEmployeeByUserId(userId);
-        if (employeeList == null || employeeList.isEmpty()) {
-            return new JsonResult(RtCode.DB_ERROR, "数据库访问异常");
-        }
-        return new JsonResult(employeeList);
+    public List<EmployeePojo> getDriverByUserId(Integer userId) {
+        return userMapper.selectDriverByUserId(userId);
+    }
+
+    @Override
+    public List<EmployeePojo> getLoaderByUserId(Integer userId) {
+        return userMapper.selectLoaderByUserId(userId);
+    }
+
+    @Override
+    public List<EmployeePojo> getEmployeeByUserId(Integer userId) {
+        return userMapper.selectEmployeeByUserId(userId);
     }
 
 

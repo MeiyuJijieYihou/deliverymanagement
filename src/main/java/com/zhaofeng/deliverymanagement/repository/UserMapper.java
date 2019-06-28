@@ -1,6 +1,8 @@
 package com.zhaofeng.deliverymanagement.repository;
 
+import com.zhaofeng.deliverymanagement.model.dto.CustomerDTO;
 import com.zhaofeng.deliverymanagement.model.entity.User;
+import com.zhaofeng.deliverymanagement.pojo.EmployeePojo;
 import com.zhaofeng.deliverymanagement.pojo.SimpleUserPojo;
 
 import java.util.List;
@@ -68,7 +70,7 @@ public interface UserMapper {
      * @param
      * @return
      */
-    List<SimpleUserPojo> selectAllCustomer();
+    List<CustomerDTO> selectAllCustomer();
 
     /**
      * 根据用户id获取客户
@@ -92,7 +94,7 @@ public interface UserMapper {
      * @param
      * @return
      */
-    List<SimpleUserPojo> selectEmployeeByUserId(Integer userId);
+    List<EmployeePojo> selectEmployeeByUserId(Integer userId);
 
     /**
      * 统计真实姓名姓名与指定的姓名相同的普通用户数量
@@ -119,4 +121,19 @@ public interface UserMapper {
      */
     Integer countByOwnerIdAndRealnameUnderEmployee(Integer ownerId, String realname);
 
+    /**
+     * 根据用户id获取司机
+     *
+     * @param
+     * @return
+     */
+    List<EmployeePojo> selectDriverByUserId(Integer userId);
+
+    /**
+     * 根据用户id获取装卸工
+     *
+     * @param
+     * @return
+     */
+    List<EmployeePojo> selectLoaderByUserId(Integer userId);
 }

@@ -21,13 +21,8 @@ public class OrdersServiceImpl implements OrdersService {
     private OrdersMapper ordersMapper;
 
     @Override
-    public JsonResult getOrdersByUserId(Integer userId) {
-        List<OrdersPojo> orderList = ordersMapper.selectOrdersByUserId(userId);
-        if (orderList == null || orderList.isEmpty()) {
-            return new JsonResult("无记录");
-        }
-
-        return new JsonResult(orderList);
+    public List<OrdersPojo> getOrdersByUserId(Integer userId) {
+        return ordersMapper.selectOrdersByUserId(userId);
     }
 
     @Override
@@ -53,6 +48,12 @@ public class OrdersServiceImpl implements OrdersService {
     @Override
     public JsonResult addOrders(Orders orders) {
         ordersMapper.insertSelective(orders);
+        return new JsonResult();
+    }
+
+    @Override
+    public JsonResult deleteOrderById(Integer id) {
+        ordersMapper.deleteByPrimaryKey(id);
         return new JsonResult();
     }
 

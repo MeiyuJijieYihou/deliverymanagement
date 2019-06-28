@@ -3,6 +3,7 @@ package com.zhaofeng.deliverymanagement.controller;
 import com.zhaofeng.deliverymanagement.common.JsonResult;
 import com.zhaofeng.deliverymanagement.model.entity.Delivery;
 import com.zhaofeng.deliverymanagement.model.params.DeliveryParam;
+import com.zhaofeng.deliverymanagement.pojo.SimpleDeliveryPojo;
 import com.zhaofeng.deliverymanagement.service.DeliveryService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -24,9 +26,9 @@ public class DeliveryController {
     private DeliveryService deliveryService;
 
 
-    @GetMapping("/{userId}")
+    @GetMapping()
     @ApiOperation("根据用户id获取发货记录")
-    public JsonResult getDeliveryByUserId(@ApiParam("用户id") @PathVariable("userId") Integer userId) {
+    public List<SimpleDeliveryPojo> getDeliveryByUserId(@ApiParam("用户id") @RequestParam("userId") Integer userId) {
         return deliveryService.getDeliveryByUserId(userId);
     }
 

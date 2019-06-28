@@ -121,8 +121,8 @@
   </update>
 
   <!-- 根据用户id获取车辆信息 -->
-  <select id="selectByUserId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select id, license_plate, max_capacity
+  <select id="selectByUserId" parameterType="java.lang.Integer" resultType="com.zhaofeng.deliverymanagement.model.dto.TruckDTO">
+    select id, license_plate as licensePlate, max_capacity as maxCapacity
     from truck
     where user_id = #{userId}
   </select>

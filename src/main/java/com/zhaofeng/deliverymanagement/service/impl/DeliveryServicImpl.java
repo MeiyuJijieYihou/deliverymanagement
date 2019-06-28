@@ -2,8 +2,9 @@ package com.zhaofeng.deliverymanagement.service.impl;
 
 import com.zhaofeng.deliverymanagement.common.JsonResult;
 import com.zhaofeng.deliverymanagement.model.entity.Delivery;
-import com.zhaofeng.deliverymanagement.model.entity.DeliveryLoaderKey;
+import com.zhaofeng.deliverymanagement.model.entity.DeliveryLoader;
 import com.zhaofeng.deliverymanagement.pojo.DeliveryPojo;
+import com.zhaofeng.deliverymanagement.pojo.SimpleDeliveryPojo;
 import com.zhaofeng.deliverymanagement.repository.DeliveryLoaderMapper;
 import com.zhaofeng.deliverymanagement.repository.DeliveryMapper;
 import com.zhaofeng.deliverymanagement.repository.OrdersMapper;
@@ -32,12 +33,9 @@ public class DeliveryServicImpl implements DeliveryService {
     private DeliveryLoaderMapper deliveryLoaderMapper;
 
     @Override
-    public JsonResult getDeliveryByUserId(Integer userId) {
-        List<DeliveryPojo> deliveryList = deliveryMapper.selectDeliveryDetailByUserId(userId);
-        if (deliveryList == null || deliveryList.isEmpty()) {
-            return new JsonResult("参数或数据库错误");
-        }
-        return new JsonResult(deliveryList);
+    public List<SimpleDeliveryPojo> getDeliveryByUserId(Integer userId) {
+        return deliveryMapper.selectDeliveryByUserId(userId);
+
     }
 
     @Override
@@ -49,7 +47,7 @@ public class DeliveryServicImpl implements DeliveryService {
             ordersMapper.updateDeliveryIdByOrderId(orderId, deliveryId);
         });
 
-        final DeliveryLoaderKey item = new DeliveryLoaderKey();
+        final DeliveryLoader item = new DeliveryLoader();
         loaderIds.forEach(loaderId -> {
             item.setDeliveryId(deliveryId);
             item.setLoaderId(loaderId);

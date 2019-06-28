@@ -6,13 +6,16 @@ import com.zhaofeng.deliverymanagement.model.params.CustomerParam;
 import com.zhaofeng.deliverymanagement.model.params.EmployeeParam;
 import com.zhaofeng.deliverymanagement.model.params.NormalUserParam;
 import com.zhaofeng.deliverymanagement.model.params.PasswordParam;
+import com.zhaofeng.deliverymanagement.pojo.EmployeePojo;
 import com.zhaofeng.deliverymanagement.service.UserService;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 /**
  * @author zhaofeng
@@ -35,8 +38,20 @@ public class UserController {
 
     @GetMapping("/employee")
     @ApiOperation("根据用户id获取员工")
-    public JsonResult getEmployeeByUserId(@ApiParam("用户id") Integer userId) {
+    public List<EmployeePojo> getEmployeeByUserId(@ApiParam("用户id") Integer userId) {
         return userService.getEmployeeByUserId(userId);
+    }
+
+    @GetMapping("/driver/{userId}")
+    @ApiOperation("根据用户id获取司机")
+    public List<EmployeePojo> getDriverByUserId(@ApiParam("用户id") @PathVariable("userId") Integer userId) {
+        return userService.getDriverByUserId(userId);
+    }
+
+    @GetMapping("/loader/{userId}")
+    @ApiOperation("根据用户id获取装卸工")
+    public List<EmployeePojo> getLoaderByUserId(@ApiParam("用户id") @PathVariable("userId") Integer userId) {
+        return userService.getLoaderByUserId(userId);
     }
 
 
