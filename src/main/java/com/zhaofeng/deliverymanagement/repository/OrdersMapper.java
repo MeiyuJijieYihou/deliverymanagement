@@ -2,7 +2,9 @@ package com.zhaofeng.deliverymanagement.repository;
 
 import com.zhaofeng.deliverymanagement.model.entity.Orders;
 import com.zhaofeng.deliverymanagement.pojo.OrdersPojo;
+import io.swagger.models.auth.In;
 
+import java.util.Date;
 import java.util.List;
 
 public interface OrdersMapper {
@@ -88,4 +90,13 @@ public interface OrdersMapper {
      * @return 
      */
     Integer updateDeliveryIdByOrderId(Integer id, Integer deliveryId);
+    
+    
+    /**
+     * 根据搜索参数获取订单
+     *
+     * @param
+     * @return 
+     */
+    List<OrdersPojo> selectBySearchParam(Integer userId, Integer scope, String realname, String addressName, Date fromDate, Date toDate);
 }

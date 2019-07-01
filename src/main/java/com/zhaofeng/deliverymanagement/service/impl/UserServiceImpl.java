@@ -4,8 +4,11 @@ import com.zhaofeng.deliverymanagement.common.JsonResult;
 import com.zhaofeng.deliverymanagement.common.RtCode;
 import com.zhaofeng.deliverymanagement.exception.AlreadyExistsException;
 import com.zhaofeng.deliverymanagement.exception.BadRequestException;
+import com.zhaofeng.deliverymanagement.exception.BaseException;
 import com.zhaofeng.deliverymanagement.model.dto.CustomerDTO;
 import com.zhaofeng.deliverymanagement.model.entity.User;
+import com.zhaofeng.deliverymanagement.model.params.search.CustomerSearchParam;
+import com.zhaofeng.deliverymanagement.model.params.search.EmployeeSearchParam;
 import com.zhaofeng.deliverymanagement.pojo.EmployeePojo;
 import com.zhaofeng.deliverymanagement.pojo.SimpleUserPojo;
 import com.zhaofeng.deliverymanagement.repository.UserMapper;
@@ -47,12 +50,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public JsonResult getCustomerByUserId(Integer userId) {
-        List<SimpleUserPojo> customerList = userMapper.selectCustomerByUserId(userId);
-        if (customerList == null || customerList.isEmpty()) {
-            return new JsonResult(RtCode.DB_ERROR, "数据库访问异常");
-        }
-        return new JsonResult(customerList);
+    public List<CustomerDTO> getCustomerByUserId(Integer userId) {
+        return userMapper.selectCustomerByUserId(userId);
     }
 
     @Override
@@ -150,6 +149,34 @@ public class UserServiceImpl implements UserService {
 
 //        return updatedUser;
         return new JsonResult(user, "密码修改成功");
+    }
+
+    @Override
+    public JsonResult deleteByUserId(Integer userId) {
+        int count = userMapper.deleteByPrimaryKey(userId);
+
+        return new JsonResult();
+    }
+
+    @Override
+    public JsonResult update(User user) {
+        userMapper.updateByPrimaryKeySelective(user);
+        return new JsonResult();
+    }
+
+    @Override
+    public List<CustomerDTO> getCustomerByRealnameLike(Integer userId, String realname) {
+        return userMapper.selectCustomerByRealnameLike(userId,"%" + realname + "%");
+    }
+
+    @Override
+    public List<CustomerDTO> getCustomerBySearchParam(CustomerSearchParam c) {
+        return userMapper.selectCustomerBySearchParam(c.getOwnerId(), c.getRealname(), c.getPhone());
+    }
+
+    @Override
+    public List<EmployeePojo> getEmployeeBySearchParam(EmployeeSearchParam e) {
+        return userMapper.selectEmployeeBySearchParam(e.getOwnerId(), e.getJobId(), e.getRealname(), e.getPhone());
     }
 
     public void setPassword(@NonNull User user, @NonNull String plainPassword) {

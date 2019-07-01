@@ -4,6 +4,7 @@ import com.zhaofeng.deliverymanagement.common.JsonResult;
 import com.zhaofeng.deliverymanagement.exception.AlreadyExistsException;
 import com.zhaofeng.deliverymanagement.model.dto.TruckDTO;
 import com.zhaofeng.deliverymanagement.model.entity.Truck;
+import com.zhaofeng.deliverymanagement.model.params.search.TruckSearchParam;
 import com.zhaofeng.deliverymanagement.repository.TruckMapper;
 import com.zhaofeng.deliverymanagement.service.TruckService;
 import org.springframework.stereotype.Service;
@@ -54,5 +55,10 @@ public class TruckServiceImpl implements TruckService {
     public JsonResult deleteById(Integer id) {
         truckMapper.deleteByPrimaryKey(id);
         return new JsonResult();
+    }
+
+    @Override
+    public List<TruckDTO> getBySearchParam(TruckSearchParam t) {
+        return truckMapper.selectBySearchParam(t.getUserId(), t.getLicensePlate());
     }
 }

@@ -3,6 +3,7 @@ package com.zhaofeng.deliverymanagement.service;
 import com.zhaofeng.deliverymanagement.common.JsonResult;
 import com.zhaofeng.deliverymanagement.model.dto.TruckDTO;
 import com.zhaofeng.deliverymanagement.model.entity.Truck;
+import com.zhaofeng.deliverymanagement.model.params.search.TruckSearchParam;
 
 import java.util.List;
 
@@ -21,4 +22,6 @@ public interface TruckService {
     JsonResult updateTruck(Truck truck);
 
     JsonResult deleteById(Integer id);
+
+    List<TruckDTO> getBySearchParam(TruckSearchParam truckSearchParam);
 }

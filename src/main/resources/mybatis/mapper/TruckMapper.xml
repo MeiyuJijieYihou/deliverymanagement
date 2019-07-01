@@ -134,4 +134,14 @@
     where user_id = #{userId}
     and license_plate = #{licensePlate}
   </select>
+  
+  <!-- 根据车辆搜索参数获取车辆 -->
+  <select id="selectBySearchParam" resultType="com.zhaofeng.deliverymanagement.model.dto.TruckDTO">
+    select id, license_plate as licensePlate, max_capacity as maxCapacity
+    from truck
+    where user_id = #{userId}
+    <if test="licensePlate != null and licensePlate != ''">
+      and license_plate like concat('%', #{licensePlate}, '%')
+    </if>
+  </select>
 </mapper>

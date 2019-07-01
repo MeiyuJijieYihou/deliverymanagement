@@ -2,6 +2,7 @@ package com.zhaofeng.deliverymanagement.controller;
 
 import com.zhaofeng.deliverymanagement.common.JsonResult;
 import com.zhaofeng.deliverymanagement.service.AddressService;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 @Slf4j
 @RestController
 @RequestMapping("/api/address")
+@Api(description = "地址相关接口文档")
 public class AddressController {
     @Autowired
     private AddressService addressService;

@@ -4,7 +4,9 @@ import com.zhaofeng.deliverymanagement.common.JsonResult;
 import com.zhaofeng.deliverymanagement.model.dto.TruckDTO;
 import com.zhaofeng.deliverymanagement.model.entity.Truck;
 import com.zhaofeng.deliverymanagement.model.params.TruckParam;
+import com.zhaofeng.deliverymanagement.model.params.search.TruckSearchParam;
 import com.zhaofeng.deliverymanagement.service.TruckService;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/truck")
+@Api(description = "车辆相关接口文档")
 public class TruckController {
     @Autowired
     private TruckService truckService;
@@ -33,6 +36,12 @@ public class TruckController {
     @ApiOperation("根据用户id获取车辆信息")
     public List<TruckDTO> getTruckByUserId(@ApiParam("用户id") @PathVariable("userId") Integer userId) {
         return truckService.getByUserId(userId);
+    }
+
+    @PostMapping("/search")
+    @ApiOperation("根据车辆搜索参数获取车辆")
+    public List<TruckDTO> getTruckBySearchParam(@ApiParam("车辆搜索参数") TruckSearchParam truckSearchParam) {
+        return truckService.getBySearchParam(truckSearchParam);
     }
 
     @PostMapping("/add")

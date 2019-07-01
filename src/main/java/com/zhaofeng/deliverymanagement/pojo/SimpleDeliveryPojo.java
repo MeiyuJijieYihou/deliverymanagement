@@ -21,6 +21,8 @@ public class SimpleDeliveryPojo {
 
     private Date deliveryTime;
 
+    private Date createdTime;
+
     /**
      * 返回类型为字符串的日期
      *
@@ -28,7 +30,18 @@ public class SimpleDeliveryPojo {
      * @return
      */
     public String getDeliveryTime() {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         return simpleDateFormat.format(deliveryTime);
+    }
+
+    /**
+     * 返回类型为字符串的日期
+     *
+     * @param
+     * @return
+     */
+    public String getCreatedTime() {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        return simpleDateFormat.format(createdTime);
     }
 }

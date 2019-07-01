@@ -3,7 +3,7 @@ package com.zhaofeng.deliverymanagement.service.impl;
 import com.zhaofeng.deliverymanagement.common.JsonResult;
 import com.zhaofeng.deliverymanagement.model.entity.Delivery;
 import com.zhaofeng.deliverymanagement.model.entity.DeliveryLoader;
-import com.zhaofeng.deliverymanagement.pojo.DeliveryPojo;
+import com.zhaofeng.deliverymanagement.model.params.search.DeliverySearchParam;
 import com.zhaofeng.deliverymanagement.pojo.SimpleDeliveryPojo;
 import com.zhaofeng.deliverymanagement.repository.DeliveryLoaderMapper;
 import com.zhaofeng.deliverymanagement.repository.DeliveryMapper;
@@ -54,5 +54,10 @@ public class DeliveryServicImpl implements DeliveryService {
             deliveryLoaderMapper.insert(item);
         });
         return new JsonResult();
+    }
+
+    @Override
+    public List<SimpleDeliveryPojo> getDeliveryBySearchParam(DeliverySearchParam d) {
+        return deliveryMapper.selectDeliveryBySearchParam(d.getUserId(), d.getLicensePlate(), d.getRealname(), d.getFromDate(), d.getToDate());
     }
 }

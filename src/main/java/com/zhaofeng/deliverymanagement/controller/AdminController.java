@@ -4,6 +4,7 @@ import com.zhaofeng.deliverymanagement.common.JsonResult;
 import com.zhaofeng.deliverymanagement.model.dto.CustomerDTO;
 import com.zhaofeng.deliverymanagement.model.entity.User;
 import com.zhaofeng.deliverymanagement.service.UserService;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -21,6 +22,7 @@ import java.util.List;
 //@CrossOrigin
 @RestController
 @RequestMapping("/api/admin")
+@Api(description = "管理员相关接口文档")
 public class AdminController {
     @Autowired
     private UserService userService;

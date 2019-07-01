@@ -2,6 +2,7 @@ package com.zhaofeng.deliverymanagement.service;
 
 import com.zhaofeng.deliverymanagement.common.JsonResult;
 import com.zhaofeng.deliverymanagement.model.entity.Orders;
+import com.zhaofeng.deliverymanagement.model.params.search.OrdersSearchParam;
 import com.zhaofeng.deliverymanagement.pojo.OrdersPojo;
 import springfox.documentation.spring.web.json.Json;
 
@@ -22,4 +23,6 @@ public interface OrdersService {
     JsonResult addOrders(Orders orders);
 
     JsonResult deleteOrderById(Integer id);
+
+    List<OrdersPojo> getOrdersBySearchParam(OrdersSearchParam ordersSearchParam);
 }

@@ -95,4 +95,10 @@
     set name = #{name,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <!-- 获取所有职位 -->
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, name
+    from job
+  </select>
 </mapper>

@@ -69,4 +69,6 @@ public interface TruckMapper {
      * @return 
      */
     Integer countByUserIdAnLicensePlate(Integer userId, String licensePlate);
+
+    List<TruckDTO> selectBySearchParam(Integer userId, String licensePlate);
 }

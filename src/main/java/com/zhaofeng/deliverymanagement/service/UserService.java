@@ -3,6 +3,8 @@ package com.zhaofeng.deliverymanagement.service;
 import com.zhaofeng.deliverymanagement.common.JsonResult;
 import com.zhaofeng.deliverymanagement.model.dto.CustomerDTO;
 import com.zhaofeng.deliverymanagement.model.entity.User;
+import com.zhaofeng.deliverymanagement.model.params.search.CustomerSearchParam;
+import com.zhaofeng.deliverymanagement.model.params.search.EmployeeSearchParam;
 import com.zhaofeng.deliverymanagement.pojo.EmployeePojo;
 import org.springframework.lang.NonNull;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,7 +22,7 @@ public interface UserService {
 
     List<CustomerDTO> getAllCustomer();
 
-    JsonResult getCustomerByUserId(Integer userId);
+    List<CustomerDTO> getCustomerByUserId(Integer userId);
 
     JsonResult getAllEmployee();
 
@@ -41,4 +43,15 @@ public interface UserService {
 
     @NonNull
     JsonResult updatePassword(@NonNull String oldPassword, @NonNull String newPassword, @NonNull Integer userId);
+
+    JsonResult deleteByUserId(Integer userId);
+
+    JsonResult update(User user);
+
+    List<CustomerDTO> getCustomerByRealnameLike(Integer userId, String realname);
+
+    List<CustomerDTO> getCustomerBySearchParam(CustomerSearchParam c);
+
+    List<EmployeePojo> getEmployeeBySearchParam(EmployeeSearchParam e);
+
 }

@@ -1,9 +1,9 @@
 package com.zhaofeng.deliverymanagement.repository;
 
 import com.zhaofeng.deliverymanagement.model.entity.Delivery;
-import com.zhaofeng.deliverymanagement.pojo.DeliveryPojo;
 import com.zhaofeng.deliverymanagement.pojo.SimpleDeliveryPojo;
 
+import java.util.Date;
 import java.util.List;
 
 public interface DeliveryMapper {
@@ -62,4 +62,7 @@ public interface DeliveryMapper {
      * @return 
      */
     List<SimpleDeliveryPojo> selectDeliveryByUserId(Integer userId);
+
+
+    List<SimpleDeliveryPojo> selectDeliveryBySearchParam(Integer userId, String licensePlate, String realname, Date fromDate, Date toDate);
 }

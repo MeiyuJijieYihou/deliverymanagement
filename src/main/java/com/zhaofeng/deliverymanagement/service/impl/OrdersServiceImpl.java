@@ -2,6 +2,7 @@ package com.zhaofeng.deliverymanagement.service.impl;
 
 import com.zhaofeng.deliverymanagement.common.JsonResult;
 import com.zhaofeng.deliverymanagement.model.entity.Orders;
+import com.zhaofeng.deliverymanagement.model.params.search.OrdersSearchParam;
 import com.zhaofeng.deliverymanagement.pojo.OrdersPojo;
 import com.zhaofeng.deliverymanagement.repository.OrdersMapper;
 import com.zhaofeng.deliverymanagement.service.OrdersService;
@@ -55,6 +56,11 @@ public class OrdersServiceImpl implements OrdersService {
     public JsonResult deleteOrderById(Integer id) {
         ordersMapper.deleteByPrimaryKey(id);
         return new JsonResult();
+    }
+
+    @Override
+    public List<OrdersPojo> getOrdersBySearchParam(OrdersSearchParam o) {
+        return ordersMapper.selectBySearchParam(o.getUserId(), o.getScope(), o.getRealname(), o.getAddressName(), o.getFromDate(), o.getToDate());
     }
 
 }

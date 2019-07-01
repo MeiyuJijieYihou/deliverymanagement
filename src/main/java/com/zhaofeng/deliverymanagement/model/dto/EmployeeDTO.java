@@ -10,5 +10,5 @@ import lombok.Data;
 
 @Data
 public class EmployeeDTO extends BaseUserSimpleDTO {
-    private Integer jobId;
+    private String jobName;
 }

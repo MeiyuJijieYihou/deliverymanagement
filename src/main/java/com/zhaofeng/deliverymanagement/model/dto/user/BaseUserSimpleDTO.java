@@ -11,4 +11,6 @@ import lombok.Data;
 @Data
 public class BaseUserSimpleDTO extends BaseUserMinimalDTO {
     private String phone;
+
+    private String remark;
 }

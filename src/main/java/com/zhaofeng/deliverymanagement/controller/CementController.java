@@ -3,6 +3,7 @@ package com.zhaofeng.deliverymanagement.controller;
 import com.zhaofeng.deliverymanagement.common.JsonResult;
 import com.zhaofeng.deliverymanagement.model.entity.Cement;
 import com.zhaofeng.deliverymanagement.service.CementService;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +20,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/cement")
+@Api(description = "水泥相关接口文档")
 public class CementController {
     @Autowired
     private CementService cementService;
