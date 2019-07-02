@@ -2,6 +2,11 @@
 <!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 <generatorConfiguration>
   <context id="context1">
+      <commentGenerator>
+      <property name="suppressDate" value="true"/>
+      <property name="suppressAllComments" value="true" />
+  </commentGenerator>
+
     <jdbcConnection
         connectionURL="jdbc:mysql://localhost:3306/deliverymanagement?
             characterEncoding=utf8&amp;serverTimezone=Asia/Shanghai&amp;useSSL=false"
@@ -15,13 +20,13 @@
     <sqlMapGenerator targetPackage="mybatis.mapper" targetProject=".\src\main\resources" />
     <javaClientGenerator targetPackage="com.zhaofeng.deliverymanagement.repository" targetProject=".\src\main\java" type="XMLMAPPER" />
 
-     <table tableName="user">
-           <!--enableCountByExample="false"-->
-           <!--enableUpdateByExample="false"-->
-           <!--enableDeleteByExample="false"-->
-           <!--enableSelectByExample="false"-->
-           <!--selectByExampleQueryId="false">-->
-    </table>
+     <!--<table tableName="user">-->
+           <!--&lt;!&ndash;enableCountByExample="false"&ndash;&gt;-->
+           <!--&lt;!&ndash;enableUpdateByExample="false"&ndash;&gt;-->
+           <!--&lt;!&ndash;enableDeleteByExample="false"&ndash;&gt;-->
+           <!--&lt;!&ndash;enableSelectByExample="false"&ndash;&gt;-->
+           <!--&lt;!&ndash;selectByExampleQueryId="false">&ndash;&gt;-->
+    <!--</table>-->
     <!--<table tableName="job"-->
            <!--enableCountByExample="false"-->
            <!--enableUpdateByExample="false"-->

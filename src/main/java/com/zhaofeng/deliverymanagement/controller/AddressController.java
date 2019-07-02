@@ -1,8 +1,11 @@
 package com.zhaofeng.deliverymanagement.controller;
 
 import com.zhaofeng.deliverymanagement.common.JsonResult;
+import com.zhaofeng.deliverymanagement.model.entity.Address;
+import com.zhaofeng.deliverymanagement.model.params.AddressParam;
 import com.zhaofeng.deliverymanagement.service.AddressService;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
@@ -28,4 +31,12 @@ public class AddressController {
         log.info("" + customerId);
         return addressService.getAllAddressByCustomerId(customerId);
     }
+
+    @PostMapping("/add")
+    @ApiOperation("添加地址")
+    public JsonResult addAddress(@ApiParam("地址参数") AddressParam addressParam) {
+        Address address = addressParam.convertTo();
+        return addressService.addAddress(address);
+    }
+
 }

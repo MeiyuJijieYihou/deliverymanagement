@@ -5,6 +5,7 @@ import com.zhaofeng.deliverymanagement.exception.AlreadyExistsException;
 import com.zhaofeng.deliverymanagement.model.dto.TruckDTO;
 import com.zhaofeng.deliverymanagement.model.entity.Truck;
 import com.zhaofeng.deliverymanagement.model.params.search.TruckSearchParam;
+//import com.zhaofeng.deliverymanagement.repository.TruckMapper;
 import com.zhaofeng.deliverymanagement.repository.TruckMapper;
 import com.zhaofeng.deliverymanagement.service.TruckService;
 import org.springframework.stereotype.Service;

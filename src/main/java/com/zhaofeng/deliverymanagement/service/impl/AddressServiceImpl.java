@@ -28,4 +28,10 @@ public class AddressServiceImpl implements AddressService {
         }
         return new JsonResult(addressList);
     }
+
+    @Override
+    public JsonResult addAddress(Address address) {
+        addressMapper.insertSelective(address);
+        return new JsonResult();
+    }
 }
