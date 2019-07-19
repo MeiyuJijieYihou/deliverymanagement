@@ -10,6 +10,10 @@ spring:
     password: 123456
     url: jdbc:mysql://localhost:3306/deliverymanagement?characterEncoding=utf8&serverTimezone=Asia/Shanghai&useSSL=false
     driver-class-name: com.mysql.cj.jdbc.Driver
+#  devtools:
+#    restart:
+#      enabled: true
+#      additional-paths: src/main/java
 
 #  # 静态资源路径
 #  resources:

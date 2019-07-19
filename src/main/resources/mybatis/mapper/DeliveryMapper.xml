@@ -150,16 +150,20 @@
 
     <!--<result column="truck_id" jdbcType="INTEGER" property="truckId" />-->
 
+    <result column="license_plate" jdbcType="VARCHAR" property="licensePlate"/>
+    <result column="driver_name" jdbcType="VARCHAR" property="driverName"/>
     <result column="delivery_time" jdbcType="TIMESTAMP" property="deliveryTime" />
+    <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
 
-    <association javaType="com.zhaofeng.deliverymanagement.model.entity.User" property="driver"
-                 column="driver_id" select="com.zhaofeng.deliverymanagement.repository.UserMapper.selectByPrimaryKey">
-    </association>
-    <association javaType="com.zhaofeng.deliverymanagement.model.entity.Truck" property="truck"
-                 column="truck_id" select="com.zhaofeng.deliverymanagement.repository.TruckMapper.selectByPrimaryKey">
-    </association>
-    <collection column="id" ofType="com.zhaofeng.deliverymanagement.model.entity.Orders" property="orderList" select="com.zhaofeng.deliverymanagement.repository.OrdersMapper.selectAllOrdersByDeliveryId" />
-    <collection column="id" ofType="com.zhaofeng.deliverymanagement.model.entity.User" property="loaderList" select="com.zhaofeng.deliverymanagement.repository.UserMapper.selectByDeliveryId" />
+
+    <!--<association javaType="com.zhaofeng.deliverymanagement.model.entity.User" property="driver"-->
+                 <!--column="driver_id" select="com.zhaofeng.deliverymanagement.repository.UserMapper.selectByPrimaryKey">-->
+    <!--</association>-->
+    <!--<association javaType="com.zhaofeng.deliverymanagement.model.entity.Truck" property="truck"-->
+                 <!--column="truck_id" select="com.zhaofeng.deliverymanagement.repository.TruckMapper.selectByPrimaryKey">-->
+    <!--</association>-->
+    <collection column="id" ofType="com.zhaofeng.deliverymanagement.pojo.OrdersPojo" property="orderList" select="com.zhaofeng.deliverymanagement.repository.OrdersMapper.selectAllOrdersByDeliveryId" />
+    <collection column="id" ofType="com.zhaofeng.deliverymanagement.model.dto.user.BaseUserMinimalDTO" property="loaderList" select="com.zhaofeng.deliverymanagement.repository.UserMapper.selectByDeliveryId" />
 
   </resultMap>
 
@@ -171,8 +175,8 @@
   <!--</select>-->
 
   <!-- 根据用户id获取所有发货记录 -->
-  <select id="selectDeliveryByUserId" parameterType="java.lang.Integer" resultType="SimpleDeliveryPojo">
-    select d.id, realname as driver_name, license_plate, delivery_time, created_time
+  <select id="selectDeliveryByUserId" parameterType="java.lang.Integer" resultMap="DeliveryDetailMap">
+    select d.id as id, realname as driver_name, license_plate, delivery_time, created_time
     from delivery d, user u, truck t
     where d.driver_id = u.id
     and d.truck_id = t.id

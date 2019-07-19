@@ -49,6 +49,15 @@ public class UserServiceImpl implements UserService {
 //        return new JsonResult(customerList);
     }
 
+    /**
+     *
+     * @description：
+     *
+     * @params [userId]
+     * @return java.util.List<com.zhaofeng.deliverymanagement.model.dto.CustomerDTO>
+     * @author zhaofeng
+     * @date 2019/7/10 16:54
+     */
     @Override
     public List<CustomerDTO> getCustomerByUserId(Integer userId) {
         return userMapper.selectCustomerByUserId(userId);

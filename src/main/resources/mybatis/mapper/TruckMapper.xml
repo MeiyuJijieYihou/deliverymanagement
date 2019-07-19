@@ -27,7 +27,7 @@
       max_capacity, recent_usage_time, usage_count
       )
     values (#{id,jdbcType=INTEGER}, #{licensePlate,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER}, 
-      #{maxCapacity,jdbcType=DOUBLE}, #{recentUsageTime,jdbcType=TIMESTAMP}, #{usageCount,jdbcType=TIMESTAMP}
+      #{maxCapacity,jdbcType=DOUBLE},now(), 0
       )
   </insert>
   <insert id="insertSelective" parameterType="com.zhaofeng.deliverymanagement.model.entity.Truck">
@@ -45,12 +45,11 @@
       <if test="maxCapacity != null">
         max_capacity,
       </if>
-      <if test="recentUsageTime != null">
+
         recent_usage_time,
-      </if>
-      <if test="usageCount != null">
+
         usage_count,
-      </if>
+
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -65,12 +64,8 @@
       <if test="maxCapacity != null">
         #{maxCapacity,jdbcType=DOUBLE},
       </if>
-      <if test="recentUsageTime != null">
-        #{recentUsageTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="usageCount != null">
-        #{usageCount,jdbcType=TIMESTAMP},
-      </if>
+      now(),
+      0,
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.zhaofeng.deliverymanagement.model.entity.Truck">
@@ -108,6 +103,7 @@
     select id, license_plate as licensePlate, max_capacity as maxCapacity
     from truck
     where user_id = #{userId}
+    order by recent_usage_time desc, usage_count desc
   </select>
 
   <!-- 根据用户id获取指定车牌号的数量 -->
@@ -126,6 +122,15 @@
     <if test="licensePlate != null and licensePlate != ''">
       and license_plate like concat('%', #{licensePlate}, '%')
     </if>
+    order by recent_usage_time desc, usage_count desc
   </select>
+
+  <!-- 根据车辆id刷新使用情况 -->
+  <update id="updateRecentUsageTimeAndUsageCount">
+    update truck
+    set recent_usage_time = now(),
+    usage_count = usage_count + 1
+    where id = #{id}
+  </update>
 
 </mapper>

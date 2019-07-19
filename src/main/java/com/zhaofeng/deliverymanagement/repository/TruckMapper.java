@@ -2,6 +2,7 @@ package com.zhaofeng.deliverymanagement.repository;
 
 import com.zhaofeng.deliverymanagement.model.dto.TruckDTO;
 import com.zhaofeng.deliverymanagement.model.entity.Truck;
+import io.swagger.models.auth.In;
 
 import java.util.List;
 
@@ -35,4 +36,7 @@ public interface TruckMapper {
     Integer countByUserIdAnLicensePlate(Integer userId, String licensePlate);
 
     List<TruckDTO> selectBySearchParam(Integer userId, String licensePlate);
+
+
+    void updateRecentUsageTimeAndUsageCount(Integer id);
 }

@@ -345,8 +345,8 @@
   </select>
 
   <!-- 根据发货记录id查询装卸工 -->
-  <select id="selectByDeliveryId" parameterType="java.lang.Integer" resultMap="SimpleUserMap">
-    select id, realname
+  <select id="selectByDeliveryId" parameterType="java.lang.Integer" resultType="com.zhaofeng.deliverymanagement.model.dto.user.BaseUserMinimalDTO">
+    select u.id, realname
     from user u, delivery_loader dl
     where u.id = dl.loader_id
     and delivery_id = #{deliveryId}

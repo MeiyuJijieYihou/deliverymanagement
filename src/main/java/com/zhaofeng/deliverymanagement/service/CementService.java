@@ -1,6 +1,9 @@
 package com.zhaofeng.deliverymanagement.service;
 
 import com.zhaofeng.deliverymanagement.common.JsonResult;
+import com.zhaofeng.deliverymanagement.model.entity.Cement;
+
+import java.util.List;
 
 /**
  * @author zhaofeng
@@ -8,5 +11,5 @@ import com.zhaofeng.deliverymanagement.common.JsonResult;
  */
 
 public interface CementService {
-    JsonResult getAllCement();
+    List<Cement> getAllCement();
 }

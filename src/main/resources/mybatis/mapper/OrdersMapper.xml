@@ -190,7 +190,7 @@
     <result column="unit_price" jdbcType="DOUBLE" property="unitPrice" />
     <result column="num" jdbcType="DOUBLE" property="num" />
     <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
-    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <!--<result column="user_id" jdbcType="INTEGER" property="userId" />-->
     <result column="delivery_id" jdbcType="INTEGER" property="deliveryId" />
 
     <!-- 需要用到sql语句中的customer_id -->
@@ -273,10 +273,14 @@
   </select>
 
   <!-- 根据发货记录id获取订单 -->
-  <select id="selectAllOrdersByDeliveryId" parameterType="java.lang.Integer" resultMap="OrdersDetailMap">
-  select id, customer_id, address_id, cement_id, unit_price, num, created_time, user_id, delivery_id
-  from orders
-  where delivery_id = #{deliveryId}
+  <select id="selectAllOrdersByDeliveryId" parameterType="java.lang.Integer" resultType="OrdersPojo">
+    select o.id, realname as customerName, address_name, name as cement_name, unit_price, num, created_time, delivery_id
+    from orders o, user u, address a, cement c
+    where o.customer_id = u.id
+    and o.address_id = a.id
+    and o.cement_id = c.id
+    and o.delivery_id = #{deliveryId}
+    order by created_time desc
   </select>
 
   <!-- 设置订单所属发货记录 -->

@@ -4,10 +4,12 @@ import com.zhaofeng.deliverymanagement.common.JsonResult;
 import com.zhaofeng.deliverymanagement.model.entity.Delivery;
 import com.zhaofeng.deliverymanagement.model.entity.DeliveryLoader;
 import com.zhaofeng.deliverymanagement.model.params.search.DeliverySearchParam;
+import com.zhaofeng.deliverymanagement.pojo.DeliveryPojo;
 import com.zhaofeng.deliverymanagement.pojo.SimpleDeliveryPojo;
 import com.zhaofeng.deliverymanagement.repository.DeliveryLoaderMapper;
 import com.zhaofeng.deliverymanagement.repository.DeliveryMapper;
 import com.zhaofeng.deliverymanagement.repository.OrdersMapper;
+import com.zhaofeng.deliverymanagement.repository.TruckMapper;
 import com.zhaofeng.deliverymanagement.service.DeliveryService;
 import org.springframework.stereotype.Service;
 
@@ -27,13 +29,17 @@ public class DeliveryServicImpl implements DeliveryService {
     private DeliveryMapper deliveryMapper;
 
     @Resource
+    private TruckMapper truckMapper;
+
+    @Resource
     private OrdersMapper ordersMapper;
 
     @Resource
     private DeliveryLoaderMapper deliveryLoaderMapper;
 
     @Override
-    public List<SimpleDeliveryPojo> getDeliveryByUserId(Integer userId) {
+    public List<DeliveryPojo> getDeliveryByUserId(Integer userId) {
+        List<DeliveryPojo> list = deliveryMapper.selectDeliveryByUserId(userId);
         return deliveryMapper.selectDeliveryByUserId(userId);
 
     }
@@ -53,6 +59,9 @@ public class DeliveryServicImpl implements DeliveryService {
             item.setLoaderId(loaderId);
             deliveryLoaderMapper.insert(item);
         });
+
+        truckMapper.updateRecentUsageTimeAndUsageCount(delivery.getTruckId());
+
         return new JsonResult();
     }
 

@@ -86,13 +86,13 @@
          <!--selectByExampleQueryId="false">-->
     <!--</table>-->
 
-    <!--<table tableName="delivery_loader"-->
-         <!--enableCountByExample="false"-->
-         <!--enableUpdateByExample="false"-->
-         <!--enableDeleteByExample="false"-->
-         <!--enableSelectByExample="false"-->
-         <!--selectByExampleQueryId="false">-->
-    <!--</table>-->
+    <table tableName="delivery_loader"
+         enableCountByExample="false"
+         enableUpdateByExample="false"
+         enableDeleteByExample="false"
+         enableSelectByExample="false"
+         selectByExampleQueryId="false">
+    </table>
 
   </context>
 </generatorConfiguration>

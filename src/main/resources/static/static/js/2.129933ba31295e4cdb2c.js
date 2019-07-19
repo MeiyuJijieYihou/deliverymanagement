@@ -1,0 +1,2 @@
+webpackJsonp([2],{if8S:function(r,n,e){var t={"./TruckAddModal.vue":"rrG3","./TruckList.vue":"SDtq"};function o(r){return e(u(r))}function u(r){var n=t[r];if(!(n+1))throw new Error("Cannot find module '"+r+"'.");return n}o.keys=function(){return Object.keys(t)},o.resolve=u,r.exports=o,o.id="if8S"}});
+//# sourceMappingURL=2.129933ba31295e4cdb2c.js.map

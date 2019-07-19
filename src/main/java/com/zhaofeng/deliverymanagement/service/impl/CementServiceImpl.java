@@ -20,9 +20,7 @@ public class CementServiceImpl implements CementService {
     private CementMapper cementMapper;
 
     @Override
-    public JsonResult getAllCement() {
-        List<Cement> cementList = cementMapper.selectAll();
-
-        return new JsonResult(cementList);
+    public List<Cement> getAllCement() {
+        return cementMapper.selectAll();
     }
 }

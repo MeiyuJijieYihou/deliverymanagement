@@ -3,6 +3,7 @@ package com.zhaofeng.deliverymanagement.service;
 import com.zhaofeng.deliverymanagement.common.JsonResult;
 import com.zhaofeng.deliverymanagement.model.entity.Delivery;
 import com.zhaofeng.deliverymanagement.model.params.search.DeliverySearchParam;
+import com.zhaofeng.deliverymanagement.pojo.DeliveryPojo;
 import com.zhaofeng.deliverymanagement.pojo.SimpleDeliveryPojo;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,7 +16,7 @@ import java.util.Set;
  */
 
 public interface DeliveryService {
-    List<SimpleDeliveryPojo> getDeliveryByUserId(Integer userId);
+    List<DeliveryPojo> getDeliveryByUserId(Integer userId);
 
     @Transactional
     JsonResult addDelivery(Delivery delivery, Set<Integer> orderIds, Set<Integer> loaderIds);
