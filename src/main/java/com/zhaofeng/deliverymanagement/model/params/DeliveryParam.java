@@ -27,7 +27,9 @@ public class DeliveryParam implements InputConverter<Delivery> {
     @NotNull(message = "所属用户id不能为空")
     private Integer userId;
 
+    @NotNull
     private Set<Integer> orderIds;
 
+    @NotNull
     private Set<Integer> loaderIds;
 }

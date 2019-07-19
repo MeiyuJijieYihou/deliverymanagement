@@ -27,13 +27,13 @@ public class CementController {
 
     @GetMapping("/")
     @ApiOperation("获取所有水泥信息")
-    public JsonResult getAllCement() {
+    public List<Cement> getAllCement() {
         return cementService.getAllCement();
     }
 
     @GetMapping("/test")
     @ApiOperation("获取所有水泥信息")
     public List<Cement> test() {
-        return (List)cementService.getAllCement().getData();
+        return cementService.getAllCement();
     }
 }

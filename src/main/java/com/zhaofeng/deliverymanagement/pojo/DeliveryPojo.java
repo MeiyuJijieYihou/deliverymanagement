@@ -1,8 +1,10 @@
 package com.zhaofeng.deliverymanagement.pojo;
 
+import com.zhaofeng.deliverymanagement.model.dto.user.BaseUserMinimalDTO;
 import com.zhaofeng.deliverymanagement.model.entity.Orders;
 import com.zhaofeng.deliverymanagement.model.entity.Truck;
 import com.zhaofeng.deliverymanagement.model.entity.User;
+import lombok.Data;
 import org.apache.ibatis.type.Alias;
 
 import java.text.SimpleDateFormat;
@@ -15,6 +17,7 @@ import java.util.List;
  */
 
 @Alias("DeliveryPojo")
+@Data
 public class DeliveryPojo {
     private Integer id;
 
@@ -22,58 +25,28 @@ public class DeliveryPojo {
 
     private String driverName;
 
-    private List<Orders> orderList;
+    private List<OrdersPojo> orderList;
 
-    private List<User> loaderList;
+    private List<BaseUserMinimalDTO> loaderList;
 
     private Date deliveryTime;
 
-    public Integer getId() {
-        return id;
-    }
+    private Date createdTime;
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getLicensePlate() {
-        return licensePlate;
-    }
-
-    public void setLicensePlate(String licensePlate) {
-        this.licensePlate = licensePlate;
-    }
-
-    public String getDriverName() {
-        return driverName;
-    }
-
-    public void setDriverName(String driverName) {
-        this.driverName = driverName;
-    }
-
-    public List<Orders> getOrderList() {
-        return orderList;
-    }
-
-    public void setOrderList(List<Orders> orderList) {
-        this.orderList = orderList;
-    }
-
-    public List<User> getLoaderList() {
-        return loaderList;
-    }
-
-    public void setLoaderList(List<User> loaderList) {
-        this.loaderList = loaderList;
-    }
 
     public String getDeliveryTime() {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         return simpleDateFormat.format(deliveryTime);
     }
 
-    public void setDeliveryTime(Date deliveryTime) {
-        this.deliveryTime = deliveryTime;
+    /**
+     * 返回类型为字符串的日期
+     *
+     * @param
+     * @return
+     */
+    public String getCreatedTime() {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        return simpleDateFormat.format(createdTime);
     }
 }

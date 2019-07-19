@@ -4,6 +4,7 @@ import com.zhaofeng.deliverymanagement.common.JsonResult;
 import com.zhaofeng.deliverymanagement.model.entity.Delivery;
 import com.zhaofeng.deliverymanagement.model.params.DeliveryParam;
 import com.zhaofeng.deliverymanagement.model.params.search.DeliverySearchParam;
+import com.zhaofeng.deliverymanagement.pojo.DeliveryPojo;
 import com.zhaofeng.deliverymanagement.pojo.SimpleDeliveryPojo;
 import com.zhaofeng.deliverymanagement.service.DeliveryService;
 import io.swagger.annotations.Api;
@@ -30,7 +31,7 @@ public class DeliveryController {
 
     @GetMapping("/{userId}")
     @ApiOperation("根据用户id获取发货记录")
-    public List<SimpleDeliveryPojo> getDeliveryByUserId(@ApiParam("用户id") @PathVariable("userId") Integer userId) {
+    public List<DeliveryPojo> getDeliveryByUserId(@ApiParam("用户id") @PathVariable("userId") Integer userId) {
         return deliveryService.getDeliveryByUserId(userId);
     }
 

@@ -17,6 +17,7 @@ import java.util.Date;
  */
 
 @Alias("OrdersPojo")
+@Data
 public class OrdersPojo {
     private Integer id;
 
@@ -33,66 +34,6 @@ public class OrdersPojo {
     private Date createdTime;
 
     private Integer deliveryId;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getCustomerName() {
-        return customerName;
-    }
-
-    public void setCustomerName(String customerName) {
-        this.customerName = customerName;
-    }
-
-    public String getAddressName() {
-        return addressName;
-    }
-
-    public void setAddressName(String addressName) {
-        this.addressName = addressName;
-    }
-
-    public String getCementName() {
-        return cementName;
-    }
-
-    public void setCementName(String cementName) {
-        this.cementName = cementName;
-    }
-
-    public Double getUnitPrice() {
-        return unitPrice;
-    }
-
-    public void setUnitPrice(Double unitPrice) {
-        this.unitPrice = unitPrice;
-    }
-
-    public Double getNum() {
-        return num;
-    }
-
-    public void setNum(Double num) {
-        this.num = num;
-    }
-
-    public void setCreatedTime(Date createdTime) {
-        this.createdTime = createdTime;
-    }
-
-    public Integer getDeliveryId() {
-        return deliveryId;
-    }
-
-    public void setDeliveryId(Integer deliveryId) {
-        this.deliveryId = deliveryId;
-    }
 
     /**
      * 返回类型为字符串的日期

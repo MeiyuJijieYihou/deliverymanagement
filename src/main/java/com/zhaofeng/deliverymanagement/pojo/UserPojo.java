@@ -3,6 +3,7 @@ package com.zhaofeng.deliverymanagement.pojo;
 import com.zhaofeng.deliverymanagement.model.entity.Address;
 import com.zhaofeng.deliverymanagement.model.entity.Job;
 import com.zhaofeng.deliverymanagement.model.entity.Role;
+import lombok.Data;
 import org.apache.ibatis.type.Alias;
 
 import java.util.List;
@@ -13,6 +14,7 @@ import java.util.List;
  */
 
 @Alias("UserPojo")
+@Data
 public class UserPojo {
     private Integer id;
 
@@ -29,69 +31,4 @@ public class UserPojo {
     private List<Role> roleList;
 
     private List<Address> addressList;
-
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getRealname() {
-        return realname;
-    }
-
-    public void setRealname(String realname) {
-        this.realname = realname;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public Job getJob() {
-        return job;
-    }
-
-    public void setJob(Job job) {
-        this.job = job;
-    }
-
-    public List<Role> getRoleList() {
-        return roleList;
-    }
-
-    public void setRoleList(List<Role> roleList) {
-        this.roleList = roleList;
-    }
-
-    public List<Address> getAddressList() {
-        return addressList;
-    }
-
-    public void setAddressList(List<Address> addressList) {
-        this.addressList = addressList;
-    }
 }
