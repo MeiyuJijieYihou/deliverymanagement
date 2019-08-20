@@ -3,21 +3,11 @@ package com.zhaofeng.deliverymanagement.repository;
 import com.zhaofeng.deliverymanagement.model.dto.TruckDTO;
 import com.zhaofeng.deliverymanagement.model.entity.Truck;
 import io.swagger.models.auth.In;
+import tk.mybatis.mapper.common.Mapper;
 
 import java.util.List;
 
-public interface TruckMapper {
-    int deleteByPrimaryKey(Integer id);
-
-    int insert(Truck record);
-
-    int insertSelective(Truck record);
-
-    Truck selectByPrimaryKey(Integer id);
-
-    int updateByPrimaryKeySelective(Truck record);
-
-    int updateByPrimaryKey(Truck record);
+public interface TruckMapper extends Mapper<Truck> {
 
         /**
      * 根据用户id获取车辆

@@ -11,250 +11,7 @@
     <result column="remark" jdbcType="VARCHAR" property="remark" />
     <result column="owner_id" jdbcType="INTEGER" property="ownerId" />
   </resultMap>
-  <sql id="Example_Where_Clause">
-    <where>
-      <foreach collection="oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Update_By_Example_Where_Clause">
-    <where>
-      <foreach collection="example.oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Base_Column_List">
-    id, username, password, realname, phone, job_id, remark, owner_id
-  </sql>
-  <select id="selectByExample" parameterType="com.zhaofeng.deliverymanagement.model.entity.UserExample" resultMap="BaseResultMap">
-    select
-    <if test="distinct">
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from user
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null">
-      order by ${orderByClause}
-    </if>
-  </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from user
-    where id = #{id,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from user
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
-  <delete id="deleteByExample" parameterType="com.zhaofeng.deliverymanagement.model.entity.UserExample">
-    delete from user
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </delete>
-  <insert id="insert" parameterType="com.zhaofeng.deliverymanagement.model.entity.User">
-    insert into user (id, username, password, 
-      realname, phone, job_id, 
-      remark, owner_id)
-    values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
-      #{realname,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{jobId,jdbcType=INTEGER}, 
-      #{remark,jdbcType=VARCHAR}, #{ownerId,jdbcType=INTEGER})
-  </insert>
-  <insert id="insertSelective" parameterType="com.zhaofeng.deliverymanagement.model.entity.User">
-    insert into user
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
-      </if>
-      <if test="username != null">
-        username,
-      </if>
-      <if test="password != null">
-        password,
-      </if>
-      <if test="realname != null">
-        realname,
-      </if>
-      <if test="phone != null">
-        phone,
-      </if>
-      <if test="jobId != null">
-        job_id,
-      </if>
-      <if test="remark != null">
-        remark,
-      </if>
-      <if test="ownerId != null">
-        owner_id,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="username != null">
-        #{username,jdbcType=VARCHAR},
-      </if>
-      <if test="password != null">
-        #{password,jdbcType=VARCHAR},
-      </if>
-      <if test="realname != null">
-        #{realname,jdbcType=VARCHAR},
-      </if>
-      <if test="phone != null">
-        #{phone,jdbcType=VARCHAR},
-      </if>
-      <if test="jobId != null">
-        #{jobId,jdbcType=INTEGER},
-      </if>
-      <if test="remark != null">
-        #{remark,jdbcType=VARCHAR},
-      </if>
-      <if test="ownerId != null">
-        #{ownerId,jdbcType=INTEGER},
-      </if>
-    </trim>
-  </insert>
-  <select id="countByExample" parameterType="com.zhaofeng.deliverymanagement.model.entity.UserExample" resultType="java.lang.Long">
-    select count(*) from user
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </select>
-  <update id="updateByExampleSelective" parameterType="map">
-    update user
-    <set>
-      <if test="record.id != null">
-        id = #{record.id,jdbcType=INTEGER},
-      </if>
-      <if test="record.username != null">
-        username = #{record.username,jdbcType=VARCHAR},
-      </if>
-      <if test="record.password != null">
-        password = #{record.password,jdbcType=VARCHAR},
-      </if>
-      <if test="record.realname != null">
-        realname = #{record.realname,jdbcType=VARCHAR},
-      </if>
-      <if test="record.phone != null">
-        phone = #{record.phone,jdbcType=VARCHAR},
-      </if>
-      <if test="record.jobId != null">
-        job_id = #{record.jobId,jdbcType=INTEGER},
-      </if>
-      <if test="record.remark != null">
-        remark = #{record.remark,jdbcType=VARCHAR},
-      </if>
-      <if test="record.ownerId != null">
-        owner_id = #{record.ownerId,jdbcType=INTEGER},
-      </if>
-    </set>
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExample" parameterType="map">
-    update user
-    set id = #{record.id,jdbcType=INTEGER},
-      username = #{record.username,jdbcType=VARCHAR},
-      password = #{record.password,jdbcType=VARCHAR},
-      realname = #{record.realname,jdbcType=VARCHAR},
-      phone = #{record.phone,jdbcType=VARCHAR},
-      job_id = #{record.jobId,jdbcType=INTEGER},
-      remark = #{record.remark,jdbcType=VARCHAR},
-      owner_id = #{record.ownerId,jdbcType=INTEGER}
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.zhaofeng.deliverymanagement.model.entity.User">
-    update user
-    <set>
-      <if test="username != null">
-        username = #{username,jdbcType=VARCHAR},
-      </if>
-      <if test="password != null">
-        password = #{password,jdbcType=VARCHAR},
-      </if>
-      <if test="realname != null">
-        realname = #{realname,jdbcType=VARCHAR},
-      </if>
-      <if test="phone != null">
-        phone = #{phone,jdbcType=VARCHAR},
-      </if>
-      <if test="jobId != null">
-        job_id = #{jobId,jdbcType=INTEGER},
-      </if>
-      <if test="remark != null">
-        remark = #{remark,jdbcType=VARCHAR},
-      </if>
-      <if test="ownerId != null">
-        owner_id = #{ownerId,jdbcType=INTEGER},
-      </if>
-    </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.zhaofeng.deliverymanagement.model.entity.User">
-    update user
-    set username = #{username,jdbcType=VARCHAR},
-      password = #{password,jdbcType=VARCHAR},
-      realname = #{realname,jdbcType=VARCHAR},
-      phone = #{phone,jdbcType=VARCHAR},
-      job_id = #{jobId,jdbcType=INTEGER},
-      remark = #{remark,jdbcType=VARCHAR},
-      owner_id = #{ownerId,jdbcType=INTEGER}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
+
 
   <!-- 用户详细信息 -->
   <resultMap id="UserDetailMap" type="UserPojo">
@@ -272,17 +29,17 @@
   </resultMap>
 
   <!-- 用户简单信息 -->
-  <resultMap id="SimpleUserMap" type="SimpleUserPojo">
-    <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="username" jdbcType="VARCHAR" property="username" />
-    <result column="password" jdbcType="VARCHAR" property="password" />
-    <result column="realname" jdbcType="VARCHAR" property="realname" />
-    <result column="phone" jdbcType="VARCHAR" property="phone" />
-    <association javaType="com.zhaofeng.deliverymanagement.model.entity.Job" property="job">
-      <id column="job_id" property="id" />
-      <result column="name" property="name" />
-    </association>
-  </resultMap>
+  <!--<resultMap id="SimpleUserMap" type="SimpleUserPojo">-->
+    <!--<id column="id" jdbcType="INTEGER" property="id" />-->
+    <!--<result column="username" jdbcType="VARCHAR" property="username" />-->
+    <!--<result column="password" jdbcType="VARCHAR" property="password" />-->
+    <!--<result column="realname" jdbcType="VARCHAR" property="realname" />-->
+    <!--<result column="phone" jdbcType="VARCHAR" property="phone" />-->
+    <!--<association javaType="com.zhaofeng.deliverymanagement.model.entity.Job" property="job">-->
+      <!--<id column="job_id" property="id" />-->
+      <!--<result column="name" property="name" />-->
+    <!--</association>-->
+  <!--</resultMap>-->
 
   <!-- 查询所有普通用户 -->
   <select id="selectAllNormalUser" resultType="SimpleUserPojo">
@@ -311,8 +68,8 @@
   </select>
 
   <!-- 查询所有员工 -->
-  <select id="selectAllEmployee" resultMap="SimpleUserMap">
-    select id, username, realname, phone
+  <select id="selectAllEmployee" resultType="SimpleUserPojo">
+    select id, username, realname, phone, remark
     from user
     where job_id is not null
   </select>
@@ -344,13 +101,13 @@
     and job_id = 2
   </select>
 
-  <!-- 根据发货记录id查询装卸工 -->
-  <select id="selectByDeliveryId" parameterType="java.lang.Integer" resultType="com.zhaofeng.deliverymanagement.model.dto.user.BaseUserMinimalDTO">
-    select u.id, realname
-    from user u, delivery_loader dl
-    where u.id = dl.loader_id
-    and delivery_id = #{deliveryId}
-  </select>
+  <!--&lt;!&ndash; 根据发货记录id查询装卸工 &ndash;&gt;-->
+  <!--<select id="selectByDeliveryId" parameterType="java.lang.Integer" resultType="com.zhaofeng.deliverymanagement.model.dto.user.BaseUserMinimalDTO">-->
+    <!--select u.id, realname-->
+    <!--from user u, delivery_loader dl-->
+    <!--where u.id = dl.loader_id-->
+    <!--and delivery_id = #{deliveryId}-->
+  <!--</select>-->
 
 
   <!-- 统计真实姓名姓名与指定的姓名相同的普通用户数量 -->

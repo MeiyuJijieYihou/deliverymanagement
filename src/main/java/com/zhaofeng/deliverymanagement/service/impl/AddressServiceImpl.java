@@ -21,12 +21,8 @@ public class AddressServiceImpl implements AddressService {
     private AddressMapper addressMapper;
 
     @Override
-    public JsonResult getAllAddressByCustomerId(Integer customerId) {
-        List<Address> addressList = addressMapper.selectByCustomerId(customerId);
-        if (addressList == null || addressList.isEmpty()) {
-            return new JsonResult(RtCode.DB_ERROR, "数据库访问异常");
-        }
-        return new JsonResult(addressList);
+    public List<Address> getAllAddressByCustomerId(Integer customerId) {
+        return addressMapper.selectByCustomerId(customerId);
     }
 
     @Override

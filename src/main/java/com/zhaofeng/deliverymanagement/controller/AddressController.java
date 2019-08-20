@@ -12,6 +12,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  * @author zhaofeng
  * @date 2019/6/26
@@ -27,9 +29,9 @@ public class AddressController {
 
     @GetMapping("/{customerId}")
     @ApiOperation("根据客户id获取地址")
-    public JsonResult getAllAddressByCustomerId(@ApiParam("客户id") @PathVariable("customerId") Integer customerId) {
+    public JsonResult<List<Address>> getAllAddressByCustomerId(@ApiParam("客户id") @PathVariable("customerId") Integer customerId) {
         log.info("" + customerId);
-        return addressService.getAllAddressByCustomerId(customerId);
+        return new JsonResult<>(addressService.getAllAddressByCustomerId(customerId));
     }
 
     @PostMapping("/add")

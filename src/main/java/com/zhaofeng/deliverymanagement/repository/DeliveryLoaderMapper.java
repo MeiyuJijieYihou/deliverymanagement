@@ -1,18 +1,8 @@
 package com.zhaofeng.deliverymanagement.repository;
 
 import com.zhaofeng.deliverymanagement.model.entity.DeliveryLoader;
+import tk.mybatis.mapper.common.Mapper;
 
-public interface DeliveryLoaderMapper {
+public interface DeliveryLoaderMapper extends Mapper<DeliveryLoader> {
 
-    int deleteByPrimaryKey(Integer id);
-
-    int insert(DeliveryLoader record);
-
-    int insertSelective(DeliveryLoader record);
-
-    DeliveryLoader selectByPrimaryKey(Integer id);
-
-    int updateByPrimaryKeySelective(DeliveryLoader record);
-
-    int updateByPrimaryKey(DeliveryLoader record);
 }

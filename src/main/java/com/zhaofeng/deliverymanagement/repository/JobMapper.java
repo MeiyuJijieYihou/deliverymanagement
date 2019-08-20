@@ -1,22 +1,11 @@
 package com.zhaofeng.deliverymanagement.repository;
 
 import com.zhaofeng.deliverymanagement.model.entity.Job;
+import tk.mybatis.mapper.common.Mapper;
 
 import java.util.List;
 
-public interface JobMapper {
-
-    int deleteByPrimaryKey(Integer id);
-
-    int insert(Job record);
-
-    int insertSelective(Job record);
-
-    Job selectByPrimaryKey(Integer id);
-
-    int updateByPrimaryKeySelective(Job record);
-
-    int updateByPrimaryKey(Job record);
+public interface JobMapper extends Mapper<Job> {
 
     /**
      * 获取所有职位信息
@@ -24,5 +13,5 @@ public interface JobMapper {
      * @param
      * @return 
      */
-    List<Job> selectAll();
+    //List<Job> selectAll();
 }

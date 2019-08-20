@@ -6,32 +6,11 @@ import com.zhaofeng.deliverymanagement.model.entity.UserExample;
 import com.zhaofeng.deliverymanagement.pojo.EmployeePojo;
 import com.zhaofeng.deliverymanagement.pojo.SimpleUserPojo;
 import org.apache.ibatis.annotations.Param;
+import tk.mybatis.mapper.common.Mapper;
 
 import java.util.List;
 
-public interface UserMapper {
-
-    long countByExample(UserExample example);
-
-    int deleteByExample(UserExample example);
-
-    int deleteByPrimaryKey(Integer id);
-
-    int insert(User record);
-
-    int insertSelective(User record);
-
-    List<User> selectByExample(UserExample example);
-
-    User selectByPrimaryKey(Integer id);
-
-    int updateByExampleSelective(@Param("record") User record, @Param("example") UserExample example);
-
-    int updateByExample(@Param("record") User record, @Param("example") UserExample example);
-
-    int updateByPrimaryKeySelective(User record);
-
-    int updateByPrimaryKey(User record);
+public interface UserMapper extends Mapper<User> {
 
     /**
      * 获取所有普通用户

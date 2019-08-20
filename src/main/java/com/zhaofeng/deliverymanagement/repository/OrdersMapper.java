@@ -2,23 +2,12 @@ package com.zhaofeng.deliverymanagement.repository;
 
 import com.zhaofeng.deliverymanagement.model.entity.Orders;
 import com.zhaofeng.deliverymanagement.pojo.OrdersPojo;
+import tk.mybatis.mapper.common.Mapper;
 
 import java.util.Date;
 import java.util.List;
 
-public interface OrdersMapper {
-
-    int deleteByPrimaryKey(Integer id);
-
-    int insert(Orders record);
-
-    int insertSelective(Orders record);
-
-    Orders selectByPrimaryKey(Integer id);
-
-    int updateByPrimaryKeySelective(Orders record);
-
-    int updateByPrimaryKey(Orders record);
+public interface OrdersMapper extends Mapper<Orders> {
 
     /**
      * 根据用户id获取订单

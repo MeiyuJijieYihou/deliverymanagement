@@ -1,24 +1,10 @@
 package com.zhaofeng.deliverymanagement.repository;
 
 import com.zhaofeng.deliverymanagement.model.entity.Address;
+import tk.mybatis.mapper.common.Mapper;
 
 import java.util.List;
-
-public interface AddressMapper {
-
-    int deleteByPrimaryKey(Integer id);
-
-
-    int insert(Address record);
-
-    int insertSelective(Address record);
-
-    Address selectByPrimaryKey(Integer id);
-
-    int updateByPrimaryKeySelective(Address record);
-
-    int updateByPrimaryKey(Address record);
-
+public interface AddressMapper extends Mapper<Address> {
 
     /**
      * 根据客户id获取地址
