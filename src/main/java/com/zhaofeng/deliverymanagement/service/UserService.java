@@ -6,6 +6,7 @@ import com.zhaofeng.deliverymanagement.model.entity.User;
 import com.zhaofeng.deliverymanagement.model.params.search.CustomerSearchParam;
 import com.zhaofeng.deliverymanagement.model.params.search.EmployeeSearchParam;
 import com.zhaofeng.deliverymanagement.pojo.EmployeePojo;
+import com.zhaofeng.deliverymanagement.pojo.SimpleUserPojo;
 import org.springframework.lang.NonNull;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,7 +19,7 @@ import java.util.List;
 
 public interface UserService {
 
-    JsonResult getAllNormalUser();
+    List<SimpleUserPojo> getAllNormalUser();
 
     List<CustomerDTO> getAllCustomer();
 

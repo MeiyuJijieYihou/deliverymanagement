@@ -285,8 +285,8 @@
   </resultMap>
 
   <!-- 查询所有普通用户 -->
-  <select id="selectAllNormalUser" resultMap="SimpleUserMap">
-    select id, username, realname, phone
+  <select id="selectAllNormalUser" resultType="SimpleUserPojo">
+    select id, username, realname, phone, remark
     from user u, user_role ur
     where u.id = ur.user_id
     and

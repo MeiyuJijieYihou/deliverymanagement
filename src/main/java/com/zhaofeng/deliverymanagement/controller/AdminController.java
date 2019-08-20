@@ -3,6 +3,7 @@ package com.zhaofeng.deliverymanagement.controller;
 import com.zhaofeng.deliverymanagement.common.JsonResult;
 import com.zhaofeng.deliverymanagement.model.dto.CustomerDTO;
 import com.zhaofeng.deliverymanagement.model.entity.User;
+import com.zhaofeng.deliverymanagement.pojo.SimpleUserPojo;
 import com.zhaofeng.deliverymanagement.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -29,9 +30,8 @@ public class AdminController {
 
     @GetMapping("/")
     @ApiOperation("获取所有普通用户")
-    public List<User> listAllNormalUser() {
-        System.out.println("进入");
-        return (List) userService.getAllNormalUser().getData();
+    public List<SimpleUserPojo> listAllNormalUser() {
+        return userService.getAllNormalUser();
     }
 
     @GetMapping("/test")

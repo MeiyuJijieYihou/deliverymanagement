@@ -32,12 +32,8 @@ public class UserServiceImpl implements UserService {
     private UserMapper userMapper;
 
     @Override
-    public JsonResult getAllNormalUser() {
-        List userList = userMapper.selectAllNormalUser();
-        if (userList == null || userList.isEmpty()) {
-            return new JsonResult(RtCode.DB_ERROR, "数据库访问异常");
-        }
-        return new JsonResult(userList);
+    public List<SimpleUserPojo> getAllNormalUser() {
+        return userMapper.selectAllNormalUser();
     }
 
     @Override
