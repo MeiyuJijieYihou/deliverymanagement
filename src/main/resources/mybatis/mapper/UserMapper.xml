@@ -43,28 +43,39 @@
 
   <!-- 查询所有普通用户 -->
   <select id="selectAllNormalUser" resultType="SimpleUserPojo">
-    select id, username, realname, phone, remark
-    from user u, user_role ur
-    where u.id = ur.user_id
-    and
-    role_id &gt; 1
+    SELECT
+      id, username, realname, phone, remark
+    FROM
+      user u, user_role ur
+    WHERE
+      u.id = ur.user_id
+    AND
+      role_id &gt; 1
   </select>
 
   <!-- 查询所有客户 -->
   <select id="selectAllCustomer" resultType="com.zhaofeng.deliverymanagement.model.dto.CustomerDTO">
-    select id, realname, phone, remark
-    from user
-    where id not in
-    (select distinct user_id from user_role)
-    and job_id is NULL
+    SELECT
+      id, realname, phone, remark
+    FROM
+      user
+    WHERE
+      id NOT IN
+    (SELECT DISTINCT user_id FROM user_role)
+    AND j
+      ob_id IS NULL
   </select>
 
   <!-- 根据用户id查询客户 -->
   <select id="selectCustomerByUserId" resultType="com.zhaofeng.deliverymanagement.model.dto.CustomerDTO">
-    select id, username, realname, phone, remark
-    from user
-    where owner_id = #{userId}
-    and job_id is null
+    SELECT
+      id, username, realname, phone, remark
+    FROM
+      user
+    WHERE
+      owner_id = #{userId}
+    AND
+      job_id IS NULL
   </select>
 
   <!-- 查询所有员工 -->
@@ -76,29 +87,44 @@
 
   <!-- 根据用户id查询员工 -->
   <select id="selectEmployeeByUserId" resultType="EmployeePojo">
-    select u.id, realname, phone, name as job_name, remark
-    from user u, job j
-    where u.job_id = j.id
-    and owner_id = #{userId}
-    and job_id is not null
+    SELECT
+      u.id, realname, phone, name as job_name, remark
+    FROM
+      user u, job j
+    WHERE
+      u.job_id = j.id
+    AND
+      owner_id = #{userId}
+    AND
+      job_id IS NOT NULL
   </select>
 
   <!-- 根据用户id查询司机-->
   <select id="selectDriverByUserId" resultType="EmployeePojo">
-    select u.id, realname, phone, name as job_name, remark
-    from user u, job j
-    where u.job_id = j.id
-    and owner_id = #{userId}
-    and job_id = 1
+    SELECT
+      u.id, realname, phone, name as job_name, remark
+    FROM
+      user u, job j
+    WHERE
+      u.job_id = j.id
+    AND
+      owner_id = #{userId}
+    AND
+      job_id = 1
   </select>
 
   <!-- 根据用户id查询装卸工-->
   <select id="selectLoaderByUserId" resultType="EmployeePojo">
-    select u.id, realname, phone, name as job_name, remark
-    from user u, job j
-    where u.job_id = j.id
-    and owner_id = #{userId}
-    and job_id = 2
+    SELECT
+      t u.id, realname, phone, name as job_name, remark
+    FROM
+      user u, job j
+    WHERE
+      u.job_id = j.id
+    AND
+      owner_id = #{userId}
+    AND
+      job_id = 2
   </select>
 
   <!--&lt;!&ndash; 根据发货记录id查询装卸工 &ndash;&gt;-->
@@ -112,68 +138,94 @@
 
   <!-- 统计真实姓名姓名与指定的姓名相同的普通用户数量 -->
   <select id="countByRealnameUnderNormalUser" parameterType="java.lang.String" resultType="java.lang.Integer">
-    select count(*)
-    from user
-    where owner_id is null
-    and username = #{username}
+    SELECT
+      COUNT (*)
+    FROM
+      user
+    WHERE
+      owner_id IS NULL
+    AND
+      username = #{username}
   </select>
 
 
   <!-- 统计真实姓名姓名与指定的姓名相同的客户数量 -->
   <select id="countByOwnerIdAndRealnameUnderCustomer" resultType="java.lang.Integer">
-    select count(*)
-    from user
-    where owner_id = #{ownerId}
-    and job_id is null
-    and realname = #{realname}
+    SELECT
+      COUNT (*)
+    FROM
+      user
+    WHERE
+      owner_id = #{ownerId}
+    AND
+      job_id IS NULL
+    AND
+      realname = #{realname}
   </select>
 
   <!-- 统计真实姓名姓名与指定的姓名相同的员工数量 -->
   <select id="countByOwnerIdAndRealnameUnderEmployee" resultType="java.lang.Integer">
-    select count(*)
-    from user
-    where owner_id = #{ownerId}
-    and job_id is not null
-    and realname = #{realname}
+    SELECT COUNT (*)
+    FROM
+      user
+    WHERE
+      owner_id = #{ownerId}
+    AND
+      job_id IS NOT NULL
+    AND
+      realname = #{realname}
   </select>
 
   <!-- 根据客户姓名获取客户 -->
   <select id="selectCustomerByRealnameLike" resultType="com.zhaofeng.deliverymanagement.model.dto.CustomerDTO">
-    select id, username, realname, phone, remark
-    from user
-    where owner_id = #{userId}
-    and job_id is null
-    and realname like #{realname}
+    SELECT
+      id, username, realname, phone, remark
+    FROM
+      user
+    WHERE
+      owner_id = #{userId}
+    AND
+      job_id IS NULL
+    AND
+      realname LIKE #{realname}
   </select>
 
   <!-- 根据客户搜索参数获取客户 -->
   <select id="selectCustomerBySearchParam" resultType="com.zhaofeng.deliverymanagement.model.dto.CustomerDTO">
-    select id, realname, phone, remark
-    from user
-    where owner_id = #{ownerId}
-    and job_id is null
+    SELECT
+      id, realname, phone, remark
+    FROM
+      user
+    WHERE
+      owner_id = #{ownerId}
+    AND
+      job_id is null
     <if test="realname != null and realname != ''">
-      and realname like concat('%', #{realname}, '%')
+      AND realname LIKE concat('%', #{realname}, '%')
     </if>
     <if test="phone != null and phone != ''">
-      and phone like concat('%', #{phone}, '%')
+      AND phone LIKE concat('%', #{phone}, '%')
     </if>
   </select>
 
   <!-- 根据员工搜索参数获取员工 -->
   <select id="selectEmployeeBySearchParam" resultType="EmployeePojo">
-    select u.id, realname, phone, name as job_name, remark
-    from user u, job j
-    where u.job_id = j.id
-    and owner_id = #{ownerId}
+    SELECT
+      u.id, realname, phone, name as job_name, remark
+    USER
+      user u, job j
+    WHERE
+      u.job_id = j.id
+    AND
+      owner_id = #{ownerId}
     <if test="jobId != null and jobId != 0">
-      and job_id = #{jobId}
+      AND job_id = #{jobId}
     </if>
     <if test="realname != null and realname != ''">
-      and realname like concat('%', #{realname}, '%')
+      AND realname LIKE concat('%', #{realname}, '%')
     </if>
     <if test="phone != null and phone != ''">
-      and phone like concat('%', #{phone}, '%')
+      AND phone LIKE concat('%', #{phone}, '%')
     </if>
   </select>
 

@@ -329,8 +329,8 @@ CREATE TABLE `truck`  (
   `license_plate` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '车牌号',
   `user_id` int(11) NOT NULL COMMENT '所属用户id',
   `max_capacity` double(4, 1) NOT NULL COMMENT '最大装载容量',
-  `recent_usage_time` datetime(0) NOT NULL COMMENT '最近使用时间',
-  `usage_count` int(11) NOT NULL COMMENT '使用次数',
+  `recent_usage_time` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '最近使用时间',
+  `usage_count` int(11) NOT NULL DEFAULT 0 COMMENT '使用次数',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 28 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 

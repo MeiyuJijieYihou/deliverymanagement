@@ -15,37 +15,50 @@
 
   <!-- 根据用户id获取车辆信息 -->
   <select id="selectByUserId" parameterType="java.lang.Integer" resultType="com.zhaofeng.deliverymanagement.model.dto.TruckDTO">
-    select id, license_plate as licensePlate, max_capacity as maxCapacity
-    from truck
-    where user_id = #{userId}
-    order by recent_usage_time desc, usage_count desc
+    SELECT
+      id, license_plate as licensePlate, max_capacity as maxCapacity
+    FROM
+      truck
+    WHERE
+      user_id = #{userId}
+    ORDER BY
+      recent_usage_time DESC, usage_count DESC
   </select>
 
   <!-- 根据用户id获取指定车牌号的数量 -->
   <select id="countByUserIdAnLicensePlate" resultType="java.lang.Integer">
-    select count(*)
-    from truck
-    where user_id = #{userId}
-    and license_plate = #{licensePlate}
+    SELECT
+      COUNT (*)
+    FROM
+      truck
+    WHERE
+      user_id = #{userId}
+    AND
+      license_plate = #{licensePlate}
   </select>
 
   <!-- 根据车辆搜索参数获取车辆 -->
   <select id="selectBySearchParam" resultType="com.zhaofeng.deliverymanagement.model.dto.TruckDTO">
-    select id, license_plate as licensePlate, max_capacity as maxCapacity
-    from truck
-    where user_id = #{userId}
+    SELECT
+      id, license_plate as licensePlate, max_capacity as maxCapacity
+    FROM
+      truck
+    WHERE
+      user_id = #{userId}
     <if test="licensePlate != null and licensePlate != ''">
-      and license_plate like concat('%', #{licensePlate}, '%')
+      AND license_plate LIKE concat('%', #{licensePlate}, '%')
     </if>
-    order by recent_usage_time desc, usage_count desc
+    ORDER BY recent_usage_time DESC, usage_count DESC
   </select>
 
   <!-- 根据车辆id刷新使用情况 -->
   <update id="updateRecentUsageTimeAndUsageCount">
-    update truck
-    set recent_usage_time = now(),
-    usage_count = usage_count + 1
-    where id = #{id}
+    UPDATE
+      truck
+    SET recent_usage_time = now(),
+        usage_count = usage_count + 1
+    WHERE
+      id = #{id}
   </update>
 
 </mapper>

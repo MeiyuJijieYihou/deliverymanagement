@@ -74,13 +74,20 @@
 
   <!-- 根据用户id获取所有订单 -->
     <select id="selectOrdersByUserId" resultType="OrdersPojo" parameterType="java.lang.Integer">
-    select o.id, realname as customerName, address_name as address_name, name as cement_name, unit_price , num, created_time, delivery_id
-    from orders o, user u, address a, cement c
-    where o.customer_id = u.id
-    and o.address_id = a.id
-    and o.cement_id = c.id
-    and o.user_id = #{userId}
-    order by created_time desc
+    SELECT
+      o.id, realname as customerName, address_name as address_name, name as cement_name, unit_price , num, created_time, delivery_id
+    FROM
+      orders o, user u, address a, cement c
+    WHERE
+     o.customer_id = u.id
+    AND
+      o.address_id = a.id
+    AND
+      o.cement_id = c.id
+    AND
+      o.user_id = #{userId}
+    ORDER BY
+      created_time DESC
   </select>
 
 
@@ -102,60 +109,88 @@
 
   <!-- 根据用户id获取未完成订单 -->
   <select id="selectUncompletedOrdersByUserId" parameterType="java.lang.Integer" resultType="OrdersPojo">
-    select o.id, realname as customerName, address_name, name as cement_name, unit_price, num, created_time, delivery_id
-    from orders o, user u, address a, cement c
-    where o.delivery_id is null
-    and o.customer_id = u.id
-    and o.address_id = a.id
-    and o.cement_id = c.id
-    and o.user_id = #{userId}
-    order by created_time desc
+    SELECT
+      o.id, realname as customerName, address_name, name as cement_name, unit_price, num, created_time, delivery_id
+    FROM
+      orders o, user u, address a, cement c
+    WHERE
+      o.delivery_id IS NULL
+    AND
+      o.customer_id = u.id
+    AND
+      o.address_id = a.id
+    AND
+      o.cement_id = c.id
+    AND
+      o.user_id = #{userId}
+    ORDER BY
+      created_time DESC
   </select>
 
   <!-- 根据用户id和客户id获取订单 -->
   <select id="selectOrdersByUserIdAndCustomerId" resultMap="OrdersDetailMap">
-    select id, customer_id, address_id, cement_id, unit_price, num, created_time, user_id, delivery_id
-    from orders
-    where user_id = #{userId}
-    and customer_id = #{customerId}
+    SELECT
+      id, customer_id, address_id, cement_id, unit_price, num, created_time, user_id, delivery_id
+    FROM
+      orders
+    WHERE
+      user_id = #{userId}
+    AND
+      customer_id = #{customerId}
   </select>
 
   <!-- 根据发货记录id获取订单 -->
   <select id="selectAllOrdersByDeliveryId" parameterType="java.lang.Integer" resultType="OrdersPojo">
-    select o.id, realname as customerName, address_name, name as cement_name, unit_price, num, created_time, delivery_id
-    from orders o, user u, address a, cement c
-    where o.customer_id = u.id
-    and o.address_id = a.id
-    and o.cement_id = c.id
-    and o.delivery_id = #{deliveryId}
-    order by created_time desc
+    SELECT
+      o.id, realname as customerName, address_name, name as cement_name, unit_price, num, created_time, delivery_id
+    FROM
+      orders o, user u, address a, cement c
+    WHERE
+      o.customer_id = u.id
+    AND
+      o.address_id = a.id
+    AND
+      o.cement_id = c.id
+    AND
+      o.delivery_id = #{deliveryId}
+    ORDER BY
+      created_time DESC
   </select>
 
   <!-- 设置订单所属发货记录 -->
   <select id="updateDeliveryIdByOrderId">
-  update orders
-  set delivery_id = #{deliveryId}
-  where id = #{id}
+  UPDATE
+    orders
+  SET
+    delivery_id = #{deliveryId}
+  WHERE
+    id = #{id}
   </select>
 
 
   <!-- 根据搜索条件获取订单 -->
   <select id="selectBySearchParam" resultType="OrdersPojo">
-    select o.id, realname as customerName, address_name as address_name, name as cement_name, unit_price , num, created_time, delivery_id
-    from orders o, user u, address a, cement c
-    where o.customer_id = u.id
-    and o.address_id = a.id
-    and o.cement_id = c.id
-    and o.user_id = #{userId}
+    SELECT
+      o.id, realname as customerName, address_name as address_name, name as cement_name, unit_price , num, created_time, delivery_id
+    FROM
+      orders o, user u, address a, cement c
+    WHERE
+      o.customer_id = u.id
+    AND
+      o.address_id = a.id
+    AND
+      o.cement_id = c.id
+    AND
+      o.user_id = #{userId}
 
     /* 范围 1 表示已完成 2表示未完成*/
     <if test="scope != null">
       <choose>
         <when test="scope == 1">
-          and o.delivery_id is not null
+          AND o.delivery_id IS NOT NULL
         </when>
         <when test="scope == 2">
-          and o.delivery_id is null
+          AND o.delivery_id IS NULL
         </when>
       </choose>
     </if>
@@ -163,25 +198,26 @@
     /* 起始日期*/
     <choose>
       <when test="fromDate != null and toDate != null">
-        and created_time between #{fromDate} and #{toDate}
+        AND created_time between #{fromDate} and #{toDate}
       </when>
       <when test="fromDate == null and toDate != null">
-        and createdtime &lt; #{toDate}
+        AND createdtime &lt; #{toDate}
       </when>
       <when test="fromDate != null and toDate == null">
-        and created_time > #{fromDate}
+        AND created_time > #{fromDate}
       </when>
     </choose>
 
     /* 用户姓名*/
     <if test="realname != null and realname != ''">
-      and realname like concat('%', #{realname}, '%')
+      AND realname like concat('%', #{realname}, '%')
     </if>
     /* 收货地址*/
     <if test="addressName != null and addressName != ''">
-      and address_name like concat('%', #{addressName}, '%')
+      AND address_name like concat('%', #{addressName}, '%')
     </if>
 
-    order by created_time desc
+    ORDER BY
+      created_time DESC
   </select>
 </mapper>

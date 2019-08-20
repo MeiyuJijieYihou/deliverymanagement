@@ -9,6 +9,8 @@ import com.zhaofeng.deliverymanagement.model.params.search.TruckSearchParam;
 import com.zhaofeng.deliverymanagement.repository.TruckMapper;
 import com.zhaofeng.deliverymanagement.service.TruckService;
 import org.springframework.stereotype.Service;
+import tk.mybatis.mapper.entity.Example;
+import tk.mybatis.mapper.util.Sqls;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -36,12 +38,18 @@ public class TruckServiceImpl implements TruckService {
 
     @Override
     public JsonResult addTruck(Truck truck) {
-        int count = truckMapper.countByUserIdAnLicensePlate(truck.getUserId(), truck.getLicensePlate());
+        Example example = Example.builder(Truck.class)
+                .where(Sqls.custom()
+                        .andEqualTo("userId", truck.getUserId())
+                        .andEqualTo("licensePlate", truck.getLicensePlate()))
+                .build();
+
+        int count = truckMapper.selectCountByExample(example);
         if (count > 0) {
             throw new AlreadyExistsException("该车辆已存在").setErrorData(truck);
         }
 
-        truckMapper.insert(truck);
+        truckMapper.insertSelective(truck);
         return new JsonResult();
     }
 

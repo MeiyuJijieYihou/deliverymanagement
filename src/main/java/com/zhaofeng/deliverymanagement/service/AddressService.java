@@ -12,6 +12,12 @@ import java.util.List;
  */
 
 public interface AddressService {
+    /**
+     * 根据客户id获取地址
+     *
+     * @param customerId
+     * @return
+     */
     List<Address> getAllAddressByCustomerId(Integer customerId);
 
     JsonResult addAddress(Address address);

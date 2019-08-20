@@ -46,49 +46,54 @@
 
   </resultMap>
 
-  <!--&lt;!&ndash; 根据用户id获取所有发货记录 &ndash;&gt;-->
-  <!--<select id="selectDeliveryDetailByUserId" parameterType="java.lang.Integer" resultMap="DeliveryDetailMap">-->
-  <!--select id, driver_id, truck_id, delivery_time-->
-  <!--from delivery-->
-  <!--where user_id = #{userId}-->
-  <!--</select>-->
-
   <!-- 根据用户id获取所有发货记录 -->
   <select id="selectDeliveryByUserId" parameterType="java.lang.Integer" resultMap="DeliveryDetailMap">
-    select d.id as id, realname as driver_name, license_plate, delivery_time, created_time
-    from delivery d, user u, truck t
-    where d.driver_id = u.id
-    and d.truck_id = t.id
-    and d.user_id = #{userId}
-    order by created_time desc, delivery_time desc
+    SELECT
+      d.id as id, realname as driver_name, license_plate, delivery_time, created_time
+    FROM
+      delivery d, user u, truck t
+    WHERE
+      d.driver_id = u.id
+    AND
+      d.truck_id = t.id
+    AND
+      d.user_id = #{userId}
+    ORDER BY
+      created_time DESC, delivery_time DESC
   </select>
 
   <!-- 根据搜索参数获取发货记录 -->
   <select id="selectDeliveryBySearchParam" resultType="SimpleDeliveryPojo">
-    select d.id, realname as driver_name, license_plate, delivery_time, created_time
-    from delivery d, user u, truck t
-    where d.driver_id = u.id
-    and d.truck_id = t.id
-    and d.user_id = #{userId}
+    SELECT
+      d.id, realname as driver_name, license_plate, delivery_time, created_time
+    FROM
+      delivery d, user u, truck t
+    WHERE
+      d.driver_id = u.id
+    AND
+      d.truck_id = t.id
+    AND
+      d.user_id = #{userId}
 
     <choose>
       <when test="fromDate != null and toDate != null">
-        and delivery_time between #{fromDate} and #{toDate}
+        AND delivery_time BETWEEN #{fromDate} AND #{toDate}
       </when>
       <when test="fromDate == null and toDate != null">
-        and delivery_time &lt; #{toDate}
+        AND delivery_time &lt; #{toDate}
       </when>
       <when test="fromDate != null and toDate == null">
-        and delivery_time > #{fromDate}
+        AND delivery_time > #{fromDate}
       </when>
     </choose>
     <if test="licensePlate != null and licensePlate != ''">
-      and license_plate like concat('%', #{licensePlate}, '%')
+      AND license_plate LIKE concat('%', #{licensePlate}, '%')
     </if>
     <if test="realname != null and realname != ''">
-      and realname like concat('%', #{realname}, '%')
+      AND realname LIKE concat('%', #{realname}, '%')
     </if>
-    order by created_time desc, delivery_time desc
+    ORDER BY
+      created_time DESC, delivery_time DESC
   </select>
 
 </mapper>

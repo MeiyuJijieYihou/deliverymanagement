@@ -1,15 +1,14 @@
 package com.zhaofeng.deliverymanagement.repository;
 
+import com.zhaofeng.deliverymanagement.common.MyMapper;
 import com.zhaofeng.deliverymanagement.model.dto.TruckDTO;
 import com.zhaofeng.deliverymanagement.model.entity.Truck;
-import io.swagger.models.auth.In;
-import tk.mybatis.mapper.common.Mapper;
 
 import java.util.List;
 
-public interface TruckMapper extends Mapper<Truck> {
+public interface TruckMapper extends MyMapper<Truck> {
 
-        /**
+    /**
      * 根据用户id获取车辆
      *
      * @param
