@@ -229,4 +229,22 @@
     </if>
   </select>
 
+  <select id="selectByDeliveryId"
+          resultType="com.zhaofeng.deliverymanagement.model.dto.user.BaseUserMinimalDTO">
+    SELECT
+      id, realname
+    FROM
+      user
+    WHERE
+      id =
+      (
+      SELECT
+        user_id
+      FROM
+        delivery
+      WHERE
+        id = #{deliveryId}
+      )
+  </select>
+
 </mapper>

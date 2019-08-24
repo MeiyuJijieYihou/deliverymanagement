@@ -1,6 +1,7 @@
 package com.zhaofeng.deliverymanagement.repository;
 
 import com.zhaofeng.deliverymanagement.model.dto.CustomerDTO;
+import com.zhaofeng.deliverymanagement.model.dto.user.BaseUserMinimalDTO;
 import com.zhaofeng.deliverymanagement.model.entity.User;
 import com.zhaofeng.deliverymanagement.model.entity.UserExample;
 import com.zhaofeng.deliverymanagement.pojo.EmployeePojo;
@@ -98,4 +99,6 @@ public interface UserMapper extends Mapper<User> {
     List<CustomerDTO> selectCustomerBySearchParam(Integer ownerId, String realname, String phone);
 
     List<EmployeePojo> selectEmployeeBySearchParam(Integer ownerId, Integer jobId, String realname, String phone);
+
+    List<BaseUserMinimalDTO> selectByDeliveryId(Integer deliveryId);
 }
